@@ -25,7 +25,7 @@ const container = document.querySelector(".container"),
         })
     })
 
-    // 로그인 폼 <=> 등록 폼 
+    // 로그인 폼 < = > 등록 폼 
     signUp.addEventListener("click", ( )=>{
         container.classList.add("active");
     });
