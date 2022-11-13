@@ -18,7 +18,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/signinform")
-    public String getLoginform(HttpSession session, Model model, @ModelAttribute("member") Member member) {
+    public String getLoginform(HttpSession session, Model model) {
         model.addAttribute("member", Member.builder().build());
         if (session.getAttribute("errorMessage") != null) {
             model.addAttribute("error",true);
