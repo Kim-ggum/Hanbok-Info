@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>ㅅㄴㅅㄴ</title>  
+    <title>ㅅㄴㅅㄴ</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,7 +25,11 @@
             <a href="#two">한복</a>
             <a href="#">Team dev</a>
             <a href="#">Contact us</a>
-            <a href="/member/index.html">로그인</a>
+            <a sec:authorize="isAnonymous()" href="/member/signinform">로그인</a>
+            <form th:action="@{/member/signout}" method="POST" sec:authorize="isAuthenticated()" name="deleteform">
+                <a sec:authorize="isAuthenticated()" href="javascript:deleteform.submit()">로그아웃</a>
+            </form>
+            <p style="color : white" sec:authorize="isAuthenticated()" sec:authentication="principal.memberName"></p>
         </div>
         <div class="icon_btn">
                 <i class="fas fa-bars menu-btn"></i>
@@ -80,17 +84,17 @@
           <li>
            <button type="button" data-slide-index="0">
                개량한복
-           </button>   
+           </button>
           </li>
             <li>
            <button type="button" data-slide-index="1">
                전통한복
-           </button>   
-          </li>        
+           </button>
+          </li>
           <li>
            <button type="button" data-slide-index="2">
                결혼식한복
-           </button>   
+           </button>
           </li>
            </ul>
        </div>
@@ -99,7 +103,7 @@
         <div class="container swiper">
             <h1 align="center">한복</h1>
             <div class="slide-container">
-                   
+
                 <div class="card-wrapper swiper-wrapper">
                     <div class="card swiper-slide">
                         <div class="image-box">
@@ -155,8 +159,8 @@
                         <h4 class="job">Lorem ipsum dolor.</h4>
                         </div>
                         </div>
-                    </div>   
-                </div>    
+                    </div>
+                </div>
             </div>
             <div class="swiper-button-next swiper-navBtn"></div>
           <div class="swiper-button-prev swiper-navBtn"></div>
@@ -205,7 +209,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="../js/script.js"></script>
     <script type="text/javascript">
-        
+
         window.addEventListener("scroll", function(){
             var header = document.querySelector("header");
             header.classList.toggle('sticky', window.scrollY > 0)
@@ -213,15 +217,15 @@
         var menu = document.querySelector('.header_menu');
         var menuBtn = document.querySelector('.menu-btn');
         var closeBtn = document.querySelector('.close-btn');
-        
+
         menuBtn.addEventListener("click" , ()=> {
             menu.classList.add('active');
         });
-        
+
         closeBtn.addEventListener("click" , ()=> {
             menu.classList.remove('active');
         });
-        
+
         $(document).ready(function () {
   var swiper = new Swiper(".swiper-container", {
     autoplay: {

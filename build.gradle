@@ -21,6 +21,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok' // lombok -> 어노테이션 기반으로 코드 자동으로 완성
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test' // security test
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5' // spring security thymeleaf
 }
 
 tasks.named('test') {

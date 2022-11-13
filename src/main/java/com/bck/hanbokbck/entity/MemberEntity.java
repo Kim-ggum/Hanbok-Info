@@ -1,5 +1,7 @@
 package com.bck.hanbokbck.entity;
 
+import com.bck.hanbokbck.domain.Role;
+import com.bck.hanbokbck.util.RoleConverter;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,15 +16,18 @@ import javax.persistence.*;
 public class MemberEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long member_id;
+    private long memberId;
 
     @Column(length = 30, nullable = false)
-    private String member_email;
+    private String memberEmail;
 
     @Column(length = 100, nullable = false)
-    private String member_pw;
+    private String memberPw;
 
     @Column(length = 30, nullable = false)
-    private String member_name;
+    private String memberName;
 
+    @Column(length = 30, nullable = false)
+    @Convert(converter = RoleConverter.class)
+    private Role memberRole;
 }

@@ -1,26 +1,27 @@
 package com.bck.hanbokbck.service;
 
 import com.bck.hanbokbck.domain.Member;
+import com.bck.hanbokbck.domain.Role;
 import com.bck.hanbokbck.entity.MemberEntity;
 import com.bck.hanbokbck.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService{
 
-    @Autowired
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     private MemberEntity dtoToEntity(Member member) {
         MemberEntity entity = MemberEntity.builder()
-                .member_email(member.getMember_email())
-                .member_pw(passwordEncoder.encode(member.getMember_pw()))
-                .member_name(member.getMember_name())
+                .memberEmail(member.getMemberEmail())
+                .memberPw(passwordEncoder.encode(member.getMemberPw()))
+                .memberName(member.getMemberName())
+                .memberRole(Role.ROLE_USER)
                 .build();
         return entity;
     }
@@ -39,10 +40,5 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public void delete(Member member) {
 
-    }
-
-    @Override
-    public Member loginByEmail(Member member) {
-        return null;
     }
 }
