@@ -34,6 +34,7 @@ public class MemberController {
         model.addAttribute("member", Member.builder().build());
         return "/member/signin-form";
     }*/
+    // html 파일이 하나라서 두개로 나눌 필요 없음
 
     @PostMapping("/signup")
     public String postMember(@ModelAttribute("member") Member member, Model model) {
