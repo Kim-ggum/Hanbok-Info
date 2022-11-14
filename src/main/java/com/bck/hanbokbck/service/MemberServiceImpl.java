@@ -41,4 +41,14 @@ public class MemberServiceImpl implements MemberService{
     public void delete(Member member) {
 
     }
+
+    @Override
+    public boolean checkEmailDuplication(String email) {
+        return memberRepository.existsByMemberEmail(email);
+    }
+
+    @Override
+    public boolean checkNameDuplication(String name) {
+        return memberRepository.existsByMemberName(name);
+    }
 }

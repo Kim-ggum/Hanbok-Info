@@ -26,18 +26,25 @@ public class MemberController {
             session.removeAttribute("errorMessage");
         }
 
-        return "/member/signin-form"; // 현재는 static에 있는 index.html임 수정해야함
+        return "/member/signin-form";
     }
 
-    @GetMapping("/signupform")
+    /*@GetMapping("/signupform")
     public String getRegiform(Model model) {
         model.addAttribute("member", Member.builder().build());
-        return "/member/signin-form"; // 로그인 성공하면 메인 화면, 실패하면 안내 문구
-    }
+        return "/member/signin-form";
+    }*/
 
     @PostMapping("/signup")
-    public String postMember(@ModelAttribute("member") Member member) {
-        memberService.create(member);
-        return "/member/signin-form"; // 안내 문구 띄우고 login 으로 가도록 다시 조정
+    public String postMember(@ModelAttribute("member") Member member, Model model) {
+        if(memberService.checkEmailDuplication(member.getMemberEmail())) {
+            model.addAttribute("message", "이미 가입된 이메일입니다.");
+        } else if(memberService.checkNameDuplication(member.getMemberName())) {
+            model.addAttribute("message", "중복 닉네임입니다.");
+        } else {
+            memberService.create(member);
+            model.addAttribute("message", "회원가입이 완료되었습니다.");
+        }
+        return "/member/signin-form";
     }
 }

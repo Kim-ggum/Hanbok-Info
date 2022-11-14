@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
     MemberEntity findByMemberEmail(String email);
+
+    // 이메일 닉네임 중복 검사, JPA 에서는 데이터가 존재하는지 확인하기 위해 exists 사용
+    boolean existsByMemberEmail(String email);
+    boolean existsByMemberName(String name);
 }
