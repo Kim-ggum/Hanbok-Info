@@ -3,7 +3,7 @@ const container = document.querySelector(".container"),
       pwFields = document.querySelectorAll(".password"),
       signUp = document.querySelector(".signup-link"),
       login = document.querySelector(".login-link");
- 
+
     //  아이콘 비밀번호 숨기기
     pwShowHide.forEach(eyeIcon =>{
         eyeIcon.addEventListener("click", ()=>{
@@ -29,6 +29,7 @@ const container = document.querySelector(".container"),
     signUp.addEventListener("click", ( )=>{
         container.classList.add("active");
     });
+
     login.addEventListener("click", ( )=>{
         container.classList.remove("active");
     });

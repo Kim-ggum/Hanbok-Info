@@ -8,9 +8,16 @@
     <link rel="stylesheet" href="../../css/member/style.css">
 
     <title>로그인 & 회원가입</title>
-    <th:block th:if="${message}">
+    <th:block th:if="${successMessage}">
         <script>
-            alert("[[${message}]]")
+            alert("[[${successMessage}]]")
+        </script>
+    </th:block>
+    <th:block th:if="${signupFail}">
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", ()=>{
+                container.classList.add("active");
+            });
         </script>
     </th:block>
 </head>
@@ -106,8 +113,12 @@
                         </div>
                     </div>
 
+                    <div th:if="signupFail">
+                        <p th:text="${signupFail}" style="color : red; margin-top: 20px;"></p>
+                    </div>
+
                     <div class="input-field button">
-                        <input type="submit" value="가입하기">
+                        <input type="submit" class="signup-btn" value="가입하기">
                     </div>
                 </form>
                 <div class="login-signup">
