@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 수정 & 삭제</title>
+    <style>
+        a{
+            text-decoration: none;
+            color: #111;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        <a href="/hanbok/notice/edit">공지사항 작성</a>
+    </h1>
+    <form method="#get#post" action="/board.html">
+    <table>
+        <tr>
+            <td>제목</td>
+            <td><input type="text" name="subject"></td>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td><input type="text" name="writer"></td>
+        </tr>
+        <tr>
+            <td>내용</td>
+            <td>
+                <textarea name="content">
+                    
+                </textarea>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="작성">
+    <input type="submit" value="삭제">
+    </form>
+    <a href="/hanbok/notice">돌아가기</a>
+</body>
+</html>
