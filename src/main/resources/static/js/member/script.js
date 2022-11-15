@@ -2,7 +2,10 @@ const container = document.querySelector(".container"),
       pwShowHide = document.querySelectorAll(".showHidePw"),
       pwFields = document.querySelectorAll(".password"),
       signUp = document.querySelector(".signup-link"),
-      login = document.querySelector(".login-link");
+      login = document.querySelector(".login-link"),
+      passwordOrigin = document.querySelector(".pw1"),
+      passwordConfirm = document.querySelector(".pw2"),
+      signupBtn = document.querySelector(".signup-btn");
 
     //  아이콘 비밀번호 숨기기
     pwShowHide.forEach(eyeIcon =>{
@@ -32,4 +35,10 @@ const container = document.querySelector(".container"),
 
     login.addEventListener("click", ( )=>{
         container.classList.remove("active");
+    });
+
+    signupBtn.addEventListener("click", ()=>{
+        if(passwordOrigin.value != passwordConfirm.value) {
+            passwordConfirm.setCustomValidity("비밀번호가 일치하지 않습니다.");
+        }
     });
