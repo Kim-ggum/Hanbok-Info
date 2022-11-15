@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="../css/member/style.css">
-          
+    <link rel="stylesheet" href="../../css/member/style.css">
+
     <title>로그인 & 회원가입</title>
+    <th:block th:if="${message}">
+        <script>
+            alert("[[${message}]]")
+        </script>
+    </th:block>
 </head>
 <body>
     <header>
@@ -20,7 +25,11 @@
             <a href="#two">한복</a>
             <a href="#">Team dev</a>
             <a href="#">Contact us</a>
-            <a href="/signup/index.html">로그인</a>
+            <a sec:authorize="isAnonymous()" href="/member/signinform">로그인</a>
+            <form th:action="@{/member/signout}" method="POST" sec:authorize="isAuthenticated()" name="deleteform">
+                <a sec:authorize="isAuthenticated()" href="javascript:deleteform.submit()">로그아웃</a>
+            </form>
+            <p style="color : white" sec:authorize="isAuthenticated()" sec:authentication="principal.memberName"></p>
         </div>
         <div class="icon_btn">
                 <i class="fas fa-bars menu-btn"></i>
@@ -32,15 +41,18 @@
             <div class="form login">
                 <span class="title">Login</span>
 
-                <form action="#">
+                <form action="#" th:action="@{/member/signin}" method="post">
                     <div class="input-field">
-                        <input type="text" placeholder="ID 입력" required>
+                        <input type="text" name="memberEmail" placeholder="이메일 입력" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="비밀번호 입력" required>
+                        <input type="password" class="password" name="memberPw" placeholder="비밀번호 입력" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+                    <div th:if="error">
+                        <p th:text="${errorMessage}" style="color : red; margin-top: 20px;"></p>
                     </div>
 
                     <div class="checkbox-text">
@@ -48,12 +60,12 @@
                             <input type="checkbox" id="logCheck">
                             <label for="logCheck" class="text">로그인 유지</label>
                         </div>
-                        
+
                         <a href="#" class="text">비밀번호를 잊으셨나요?</a>
                     </div>
 
                     <div class="input-field button">
-                        <input type="button" value="Login">
+                        <input type="submit" value="Login">
                     </div>
                 </form>
 
@@ -68,17 +80,17 @@
             <div class="form signup">
                 <span class="title">회원등록</span>
 
-                <form action="#">
+                <form action="#" th:action="@{'/member/signup'}" th:object="${member}" th:method="post">
                     <div class="input-field">
-                        <input type="text" placeholder="이름을 입력하세요." required>
+                        <input type="text" placeholder="이름을 입력하세요." th:field="*{memberName}" required>
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="text" placeholder="이메일을 입력하세요." required>
+                        <input type="text" placeholder="이메일을 입력하세요." th:field="*{memberEmail}" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="비밀번호 입력" required>
+                        <input type="password" class="password" placeholder="비밀번호 입력" th:field="*{memberPw}" required>
                         <i class="uil uil-lock icon"></i>
                     </div>
                     <div class="input-field">
@@ -95,7 +107,7 @@
                     </div>
 
                     <div class="input-field button">
-                        <input type="button" value="가입하기">
+                        <input type="submit" value="가입하기">
                     </div>
                 </form>
                 <div class="login-signup">
@@ -108,7 +120,7 @@
     </div>
 </main>
     
-	<script src="../js/member/script.js"></script>
+	<script src="../../js/member/script.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,30 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.4'
+    id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+    id 'java'
+}
+
+group = 'com.bck'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // jpa
+    implementation 'org.mariadb.jdbc:mariadb-java-client' // mariadb 사용
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // thymeleaf 사용
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok' // lombok -> 어노테이션 기반으로 코드 자동으로 완성
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test' // security test
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5' // spring security thymeleaf
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
