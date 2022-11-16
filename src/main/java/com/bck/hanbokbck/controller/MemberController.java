@@ -55,7 +55,7 @@ public class MemberController {
         } else {
             memberService.create(member);
             session.setAttribute("signupSuccess", "회원가입이 완료되었습니다.");
-        }
+        } // redirect를 하기 위해 여기에서 session에 에러 메시지를 담아줌
         return "redirect:/member/signinform";
     }
 }
