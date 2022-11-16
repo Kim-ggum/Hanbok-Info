@@ -5,7 +5,10 @@ import com.bck.hanbokbck.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -16,23 +19,33 @@ public class MemberController {
 
     @GetMapping("/signinform")
     public String getLoginform(HttpSession session, Model model) {
+        model.addAttribute("member", Member.builder().build());
         if (session.getAttribute("errorMessage") != null) {
             model.addAttribute("error",true);
             model.addAttribute("errorMessage", session.getAttribute("errorMessage"));
             session.removeAttribute("errorMessage");
         }
-        return "/member/index";
+
+        return "/member/signin-form";
     }
 
-    @GetMapping("/signupform")
+    /*@GetMapping("/signupform")
     public String getRegiform(Model model) {
         model.addAttribute("member", Member.builder().build());
-        return "/index"; // 로그인 성공하면 메인 화면, 실패하면 안내 문구
-    }
+        return "/member/signin-form";
+    }*/
+    // html 파일이 하나라서 두개로 나눌 필요 없음
 
     @PostMapping("/signup")
     public String postMember(@ModelAttribute("member") Member member, Model model) {
-        memberService.create(member);
-        return "/index"; // 안내 문구 띄우고 login 으로 가도록 다시 조정
+        if(memberService.checkEmailDuplication(member.getEmail())) {
+            model.addAttribute("message", "이미 가입된 이메일입니다.");
+        } else if(memberService.checkNameDuplication(member.getName())) {
+            model.addAttribute("message", "중복 닉네임입니다.");
+        } else {
+            memberService.create(member);
+            model.addAttribute("message", "회원가입이 완료되었습니다.");
+        }
+        return "/member/signin-form";
     }
 }

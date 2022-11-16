@@ -5,9 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="/css/member/style.css">
-          
+    <link rel="stylesheet" href="../../css/member/style.css">
+
     <title>로그인 & 회원가입</title>
+    <th:block th:if="${message}">
+        <script>
+            alert("[[${message}]]")
+        </script>
+    </th:block>
 </head>
 <body>
     <header>
@@ -38,7 +43,7 @@
 
                 <form th:action="@{/member/signin}" method="post">
                     <div class="input-field">
-                        <input type="text" name="email" placeholder="email 입력" required>
+                        <input type="text" name="email" placeholder="이메일 입력" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
@@ -55,7 +60,7 @@
                             <input type="checkbox" id="logCheck">
                             <label for="logCheck" class="text">로그인 유지</label>
                         </div>
-                        
+
                         <a href="#" class="text">비밀번호를 잊으셨나요?</a>
                     </div>
 
@@ -75,17 +80,17 @@
             <div class="form signup">
                 <span class="title">회원등록</span>
 
-                <form action="#">
+                <form action="#" th:action="@{'/member/signup'}" th:object="${member}" th:method="post">
                     <div class="input-field">
-                        <input type="text" placeholder="이름을 입력하세요." required>
+                        <input type="text" placeholder="이름을 입력하세요." th:field="*{name}" required>
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="text" placeholder="이메일을 입력하세요." required>
+                        <input type="text" placeholder="이메일을 입력하세요." th:field="*{email}" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="비밀번호 입력" required>
+                        <input type="password" class="password" placeholder="비밀번호 입력" th:field="*{pw}" required>
                         <i class="uil uil-lock icon"></i>
                     </div>
                     <div class="input-field">
@@ -102,7 +107,7 @@
                     </div>
 
                     <div class="input-field button">
-                        <input type="button" value="가입하기">
+                        <input type="submit" value="가입하기">
                     </div>
                 </form>
                 <div class="login-signup">
@@ -115,7 +120,7 @@
     </div>
 </main>
     
-	<script src="/js/member/script.js"></script>
+	<script src="../../js/member/script.js"></script>
 
 </body>
 </html>

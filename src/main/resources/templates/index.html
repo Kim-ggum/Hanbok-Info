@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>ㅅㄴㅅㄴ</title>  
+    <title>ㅅㄴㅅㄴ</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,10 +9,10 @@
     <script src="https://kit.fontawesome.com/aa02f61db7.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <!--link rel="stylesheet" href="css/styles.css"/-->
     <!-- Swiper CSS -->
-    <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../css/swiper-bundle.min.css" />
 </head>
 <body>
     <header>
@@ -41,17 +41,17 @@
   <div class="swiper-wrapper">
     <!-- Slides -->
     <div class="swiper-slide">
-      <img src="/images/image20.jpg" alt="">
+      <img src="../static/images/image20.jpg" alt="">
       <div class="title">선남선녀</div>
       <div class="description">과거에 기억에 스며들다</div>
     </div>
     <div class="swiper-slide">
-     <img src="/images/image11.jpg" alt="">
+     <img src="../static/images/image11.jpg" alt="">
       <div class="title">한국의 문양</div>
       <div class="description">태극문양 기와</div>
     </div>
     <div class="swiper-slide">
-     <img src="/images/image12.jpg" alt="">
+     <img src="../static/images/image12.jpg" alt="">
       <div class="title">경복궁 경회루</div>
       <div class="description">밤에 보면 그토록 아름다운..</div>
     </div>
@@ -84,17 +84,17 @@
           <li>
            <button type="button" data-slide-index="0">
                개량한복
-           </button>   
+           </button>
           </li>
             <li>
            <button type="button" data-slide-index="1">
                전통한복
-           </button>   
-          </li>        
+           </button>
+          </li>
           <li>
            <button type="button" data-slide-index="2">
                결혼식한복
-           </button>   
+           </button>
           </li>
            </ul>
        </div>
@@ -103,7 +103,7 @@
         <div class="container swiper">
             <h1 align="center">한복</h1>
             <div class="slide-container">
-                   
+
                 <div class="card-wrapper swiper-wrapper">
                     <div class="card swiper-slide">
                         <div class="image-box">
@@ -159,8 +159,8 @@
                         <h4 class="job">Lorem ipsum dolor.</h4>
                         </div>
                         </div>
-                    </div>   
-                </div>    
+                    </div>
+                </div>
             </div>
             <div class="swiper-button-next swiper-navBtn"></div>
           <div class="swiper-button-prev swiper-navBtn"></div>
@@ -207,9 +207,9 @@
     <a class="top_arrow" href="#"><i class="fa-solid fa-arrow-up"></i></a>
 <!--    <script src="js/swiper-bundle.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script src="/js/script.js"></script>
+    <script src="../js/script.js"></script>
     <script type="text/javascript">
-        
+
         window.addEventListener("scroll", function(){
             var header = document.querySelector("header");
             header.classList.toggle('sticky', window.scrollY > 0)
@@ -217,15 +217,15 @@
         var menu = document.querySelector('.header_menu');
         var menuBtn = document.querySelector('.menu-btn');
         var closeBtn = document.querySelector('.close-btn');
-        
+
         menuBtn.addEventListener("click" , ()=> {
             menu.classList.add('active');
         });
-        
+
         closeBtn.addEventListener("click" , ()=> {
             menu.classList.remove('active');
         });
-        
+
         $(document).ready(function () {
   var swiper = new Swiper(".swiper-container", {
     autoplay: {
