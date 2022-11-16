@@ -15,13 +15,12 @@ import java.util.Collection;
 @AllArgsConstructor
 @Builder
 public class Member implements UserDetails {
-    private Long memberId;
-    private String memberEmail;
-    private String memberPw;
-    private String memberName;
-
+    private Long id;
+    private String email;
+    private String pw;
+    private String name;
     @Convert(converter = RoleConverter.class)
-    private Role memberRole;
+    private Role role;
 
     // 해당 유저의 권한목록 리턴
     @Override
@@ -30,7 +29,7 @@ public class Member implements UserDetails {
         collect.add(new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                return memberRole.toString();
+                return role.toString();
             }
         });
         return collect;
@@ -39,13 +38,14 @@ public class Member implements UserDetails {
     // 비밀번호 리턴
     @Override
     public String getPassword() {
-        return getMemberPw();
+        return getPw();
     }
 
     // 로그인할 때 ID값 리턴 : email로 로그인하기 때문에 email 리턴
     @Override
     public String getUsername() {
-        return getMemberEmail();
+        return getEmail();
+
     }
 
     // 계정 만료 여부

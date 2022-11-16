@@ -18,10 +18,11 @@ public class MemberServiceImpl implements MemberService{
 
     private MemberEntity dtoToEntity(Member member) {
         MemberEntity entity = MemberEntity.builder()
-                .memberEmail(member.getMemberEmail())
-                .memberPw(passwordEncoder.encode(member.getMemberPw()))
-                .memberName(member.getMemberName())
-                .memberRole(Role.ROLE_USER)
+                .id(member.getId()) // 추가
+                .email(member.getEmail())
+                .pw(passwordEncoder.encode(member.getPw()))
+                .name(member.getName())
+                .role(member.getRole()) // 변경
                 .build();
         return entity;
     }
@@ -44,11 +45,11 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public boolean checkEmailDuplication(String email) {
-        return memberRepository.existsByMemberEmail(email);
+        return memberRepository.existsByEmail(email);
     }
 
     @Override
     public boolean checkNameDuplication(String name) {
-        return memberRepository.existsByMemberName(name);
+        return memberRepository.existsByName(name);
     }
 }

@@ -29,7 +29,7 @@
             <form th:action="@{/member/signout}" method="POST" sec:authorize="isAuthenticated()" name="deleteform">
                 <a sec:authorize="isAuthenticated()" href="javascript:deleteform.submit()">로그아웃</a>
             </form>
-            <p style="color : white" sec:authorize="isAuthenticated()" sec:authentication="principal.memberName"></p>
+            <p style="color : white" sec:authorize="isAuthenticated()" sec:authentication="principal.name"></p>
         </div>
         <div class="icon_btn">
                 <i class="fas fa-bars menu-btn"></i>

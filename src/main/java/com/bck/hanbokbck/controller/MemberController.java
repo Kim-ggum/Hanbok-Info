@@ -47,14 +47,14 @@ public class MemberController {
     // html 파일이 하나라서 두개로 나눌 필요 없음
 
     @PostMapping("/signup")
-    public String postMember(@ModelAttribute("member") Member member, HttpSession session) {
-        if(memberService.checkEmailDuplication(member.getMemberEmail())) {
-            session.setAttribute("emailFail", "이미 가입된 이메일입니다.");
-        } else if(memberService.checkNameDuplication(member.getMemberName())) {
-            session.setAttribute("nameFail", "중복 닉네임입니다.");
+    public String postMember(@ModelAttribute("member") Member member, Model model) {
+        if(memberService.checkEmailDuplication(member.getEmail())) {
+            model.addAttribute("message", "이미 가입된 이메일입니다.");
+        } else if(memberService.checkNameDuplication(member.getName())) {
+            model.addAttribute("message", "중복 닉네임입니다.");
         } else {
             memberService.create(member);
-            session.setAttribute("signupSuccess", "회원가입이 완료되었습니다.");
+            model.addAttribute("signupSuccess", "회원가입이 완료되었습니다.");
         }
         return "redirect:/member/signinform";
     }

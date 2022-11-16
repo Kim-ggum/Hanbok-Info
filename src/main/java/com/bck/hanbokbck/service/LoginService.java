@@ -18,16 +18,16 @@ public class LoginService implements UserDetailsService {
     // 회원 찾는 로직
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        MemberEntity member = memberRepository.findByMemberEmail(email);
+        MemberEntity member = memberRepository.findByEmail(email);
         if(member == null) {
             throw new UsernameNotFoundException("");
         }
         return Member.builder()
-                .memberId(member.getMemberId())
-                .memberEmail(member.getMemberEmail())
-                .memberPw(member.getMemberPw())
-                .memberName(member.getMemberName())
-                .memberRole(member.getMemberRole())
+                .id(member.getId())
+                .email(member.getEmail())
+                .pw(member.getPw())
+                .name(member.getName())
+                .role(member.getRole())
                 .build();
     }
 }

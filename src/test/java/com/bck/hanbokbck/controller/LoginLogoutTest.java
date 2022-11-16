@@ -49,13 +49,13 @@ public class LoginLogoutTest {
         // given
         String email = "test@test.com";
         String pwd = "1234";
-        MemberEntity member = MemberEntity.builder().memberEmail(email).memberName("김나나").memberPw(passwordEncoder.encode(pwd)).memberRole(Role.ROLE_USER).build();
+        MemberEntity member = MemberEntity.builder().email(email).name("김나나").pw(passwordEncoder.encode(pwd)).role(Role.ROLE_USER).build();
         memberRepository.save(member);
 
         // when, then
         mockMvc.perform(post("/member/signin")
-                        .param("memberEmail", email)
-                        .param("memberPw", pwd)
+                        .param("email", email)
+                        .param("pw", pwd)
                         .with(csrf()))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection()) // redirect 응답을 받았는지
@@ -69,13 +69,13 @@ public class LoginLogoutTest {
         // given
         String email = "test@test.com";
         String pwd = "1234";
-        MemberEntity member = MemberEntity.builder().memberEmail(email).memberName("김나나").memberPw(passwordEncoder.encode(pwd)).memberRole(Role.ROLE_USER).build();
+        MemberEntity member = MemberEntity.builder().email(email).name("김나나").pw(passwordEncoder.encode(pwd)).role(Role.ROLE_USER).build();
         memberRepository.save(member);
 
         // when, then
         mockMvc.perform(post("/member/signin")
-                        .param("memberEmail", email)
-                        .param("memberPw", "1235")
+                        .param("email", email)
+                        .param("pw", "1235")
                         .with(csrf()))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection()) // redirect 응답을 받았는지

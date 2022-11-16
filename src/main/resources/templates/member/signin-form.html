@@ -36,7 +36,7 @@
             <form th:action="@{/member/signout}" method="POST" sec:authorize="isAuthenticated()" name="deleteform">
                 <a sec:authorize="isAuthenticated()" href="javascript:deleteform.submit()">로그아웃</a>
             </form>
-            <p style="color : white" sec:authorize="isAuthenticated()" sec:authentication="principal.memberName"></p>
+            <p style="color : white" sec:authorize="isAuthenticated()" sec:authentication="principal.name"></p>
         </div>
         <div class="icon_btn">
                 <i class="fas fa-bars menu-btn"></i>
@@ -47,14 +47,13 @@
         <div class="forms">
             <div class="form login">
                 <span class="title">Login</span>
-
-                <form action="#" th:action="@{/member/signin}" method="post">
+                <form th:action="@{/member/signin}" method="post">
                     <div class="input-field">
-                        <input type="text" name="memberEmail" placeholder="이메일 입력" required>
+                        <input type="text" name="email" placeholder="이메일 입력" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" name="memberPw" placeholder="비밀번호 입력" required>
+                        <input type="password" class="password" name="pw" placeholder="비밀번호 입력" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
@@ -89,15 +88,15 @@
 
                 <form action="#" th:action="@{'/member/signup'}" th:object="${member}" th:method="post">
                     <div class="input-field">
-                        <input type="text" placeholder="이름을 입력하세요." th:field="*{memberName}" required>
+                        <input type="text" placeholder="이름을 입력하세요." th:field="*{name}" required>
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="email" placeholder="이메일을 입력하세요." th:field="*{memberEmail}" required>
+                        <input type="text" placeholder="이메일을 입력하세요." th:field="*{email}" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password pw1" placeholder="비밀번호 입력" th:field="*{memberPw}" required>
+                        <input type="password" class="password" placeholder="비밀번호 입력" th:field="*{pw}" required>
                         <i class="uil uil-lock icon"></i>
                     </div>
                     <div class="input-field">
