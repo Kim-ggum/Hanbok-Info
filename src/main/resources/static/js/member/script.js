@@ -3,8 +3,6 @@ const container = document.querySelector(".container"),
       pwFields = document.querySelectorAll(".password"),
       signUp = document.querySelector(".signup-link"),
       login = document.querySelector(".login-link"),
-      passwordOrigin = document.querySelector(".pw1"),
-      passwordConfirm = document.querySelector(".pw2"),
       signupBtn = document.querySelector(".signup-btn");
 
     //  아이콘 비밀번호 숨기기
@@ -38,7 +36,12 @@ const container = document.querySelector(".container"),
     });
 
     signupBtn.addEventListener("click", ()=>{
+        var passwordOrigin = document.querySelector(".pw1"),
+            passwordConfirm = document.querySelector(".pw2");
+
         if(passwordOrigin.value != passwordConfirm.value) {
             passwordConfirm.setCustomValidity("비밀번호가 일치하지 않습니다.");
+        } else {
+            passwordConfirm.setCustomValidity("");
         }
     });

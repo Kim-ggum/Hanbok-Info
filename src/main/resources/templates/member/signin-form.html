@@ -49,7 +49,7 @@
                 <span class="title">Login</span>
                 <form th:action="@{/member/signin}" method="post">
                     <div class="input-field">
-                        <input type="text" name="email" placeholder="이메일 입력" required>
+                        <input type="email" name="email" placeholder="이메일 입력" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
@@ -96,7 +96,7 @@
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="비밀번호 입력" th:field="*{pw}" required>
+                        <input type="password" class="password pw1" placeholder="비밀번호 입력" th:field="*{pw}" required>
                         <i class="uil uil-lock icon"></i>
                     </div>
                     <div class="input-field">
