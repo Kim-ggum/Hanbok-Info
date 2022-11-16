@@ -38,8 +38,8 @@ public class WebSecurityConfig {
                     .and()
                 .formLogin()
                     .loginPage("/member/signinform")
-                    .usernameParameter("memberEmail")	// 로그인 시 form에서 가져올 id name 값
-                    .passwordParameter("memberPw") // 로그인 시 form에서 가져올 password name 값
+                    .usernameParameter("email")	// 로그인 시 form에서 가져올 id name 값
+                    .passwordParameter("pw") // 로그인 시 form에서 가져올 password name 값
                     .loginProcessingUrl("/member/signin") // 로그인을 처리할 URL 입력
                     .defaultSuccessUrl("/hanbok/main")	// 로그인 성공시 url
                     .failureHandler(loginFailureHandler) // 로그인 실패 핸들러

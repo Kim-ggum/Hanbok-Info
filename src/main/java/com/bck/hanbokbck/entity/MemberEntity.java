@@ -16,18 +16,18 @@ import javax.persistence.*;
 public class MemberEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long memberId;
+    private long id;
 
-    @Column(length = 30, nullable = false)
-    private String memberEmail;
+    @Column(length = 255, nullable = false)
+    private String email;
 
-    @Column(length = 100, nullable = false)
-    private String memberPw;
+    @Column(length = 255, nullable = false)
+    private String pw;
 
-    @Column(length = 30, nullable = false)
-    private String memberName;
+    @Column(length = 255, nullable = false)
+    private String name;
 
     @Column(length = 30, nullable = false)
     @Convert(converter = RoleConverter.class)
-    private Role memberRole;
+    private Role role;
 }

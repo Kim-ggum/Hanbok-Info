@@ -38,9 +38,9 @@ public class MemberController {
 
     @PostMapping("/signup")
     public String postMember(@ModelAttribute("member") Member member, Model model) {
-        if(memberService.checkEmailDuplication(member.getMemberEmail())) {
+        if(memberService.checkEmailDuplication(member.getEmail())) {
             model.addAttribute("message", "이미 가입된 이메일입니다.");
-        } else if(memberService.checkNameDuplication(member.getMemberName())) {
+        } else if(memberService.checkNameDuplication(member.getName())) {
             model.addAttribute("message", "중복 닉네임입니다.");
         } else {
             memberService.create(member);
