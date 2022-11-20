@@ -58,4 +58,9 @@ public class MemberController {
         } // redirect를 하기 위해 여기에서 session에 에러 메시지를 담아줌
         return "redirect:/member/signinform";
     }
+
+    @GetMapping("/updateform")
+    public String getUpdateform(HttpSession session, Model model) {
+        return "/member/member-edit";
+    }
 }
