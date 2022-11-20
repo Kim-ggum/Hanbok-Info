@@ -67,8 +67,12 @@ public class MemberController {
             model.addAttribute("failMessage", session.getAttribute("fail"));
             session.removeAttribute("fail");
         } else {
-            model.addAttribute("successMessage", session.getAttribute("success"));
+            model.addAttribute("pwSuccessMessage", session.getAttribute("success"));
             session.removeAttribute("success");
+        }
+        if (session.getAttribute("nameFail") != null) {
+            model.addAttribute("nameFail", session.getAttribute("nameFail"));
+            session.removeAttribute("nameFail");
         }
 
         return "/member/member-edit";
@@ -87,16 +91,17 @@ public class MemberController {
     }
 
     @PutMapping("/update")
-    public String updateMember(@ModelAttribute("member") Member member, Principal principal) {
+    public String updateMember(@ModelAttribute("member") Member member, Principal principal, HttpSession session) {
         member.setId(memberService.getByEmail(principal.getName()).getId());
         member.setRole(memberService.getByEmail(principal.getName()).getRole());
-        if(member.getPassword() == null) {
-            member.setPw(memberService.getByEmail(principal.getName()).getPw());
+
+        if(memberService.checkNameDuplication(member.getName()) && !member.getName().equals(memberService.getByEmail(member.getEmail()).getName())) {
+            session.setAttribute("nameFail", "중복 닉네임입니다.");
+            return "redirect:/member/updateform";
+        } else {
+            memberService.update(member);
+            return "redirect:/";
         }
 
-
-        memberService.update(member);
-
-        return "redirect:/";
     }
 }

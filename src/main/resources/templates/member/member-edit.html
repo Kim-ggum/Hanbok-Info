@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../css/member/edit-style.css">
           
     <title>회원정보 확인</title>
-    <th:block th:if="${successMessage}">
+    <th:block th:if="${pwSuccessMessage} or ${nameFail}">
         <script type="text/javascript">
             document.addEventListener("DOMContentLoaded", ()=>{
                 container.classList.add("active");
@@ -78,6 +78,9 @@
                         <input type="password" class="password pw2" placeholder="비밀번호 변경 확인" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+                    <div th:if="${nameFail}">
+                        <p th:text="${nameFail}" style="color : red; margin-top: 20px;"></p>
                     </div>
                     <div class="input-field button">
                         <input type="submit" class="update-btn" value="수정하기">
