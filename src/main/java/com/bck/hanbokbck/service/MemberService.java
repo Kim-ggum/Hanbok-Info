@@ -13,5 +13,7 @@ public interface MemberService {
 
     boolean checkNameDuplication(String name);
 
+    boolean checkPw(Member member);
+
     Member getByEmail(String email);
 }

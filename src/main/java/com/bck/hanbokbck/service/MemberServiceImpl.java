@@ -92,4 +92,13 @@ public class MemberServiceImpl implements MemberService{
     public boolean checkNameDuplication(String name) {
         return memberRepository.existsByName(name);
     }
+
+    @Override
+    public boolean checkPw(Member member) {
+        if(passwordEncoder.matches(member.getPw(),memberRepository.findByEmail(member.getEmail()).getPw())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

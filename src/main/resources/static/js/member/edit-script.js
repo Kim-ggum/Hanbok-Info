@@ -27,14 +27,6 @@ pwShowHide.forEach(eyeIcon =>{
     })
 })
 
-// 로그인 폼 < = > 등록 폼
-signUp.addEventListener("click", ( )=>{
-    container.classList.add("active");
-});
-login.addEventListener("click", ( )=>{
-    container.classList.remove("active");
-});
-
 updateBtn.addEventListener("click", ()=>{
     var passwordOrigin = document.querySelector(".pw1"),
         passwordConfirm = document.querySelector(".pw2");

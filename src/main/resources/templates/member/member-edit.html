@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="../../css/member/edit-style.css">
           
     <title>회원정보 확인</title>
+    <th:block th:if="${successMessage}">
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", ()=>{
+                container.classList.add("active");
+            });
+        </script>
+    </th:block>
 </head>
 <body>
     <header>
@@ -36,15 +43,18 @@
             <div class="form login">
                 <span class="title">패스워드 확인</span>
 
-                <form action="#">
+                <form action="#" th:action="@{/member/pwcheck}" th:object="${member}" th:method="get">
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="패스워드 입력" required>
+                        <input type="password" class="password" th:field="*{pw}" placeholder="패스워드 입력" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
+                    <div th:if="${failMessage}">
+                        <p th:text="${failMessage}" style="color : red; margin-top: 20px;"></p>
+                    </div>
                     <!-- 로그인 버튼 클릭시 회원정보 일치하면 회원정보수정 페이지로 이동 -->
                     <div class="input-field button">
-                        <input type="button" value="입력" class="signup-link">
+                        <input type="submit" value="입력" class="signup-link pw-check">
                     </div>
                 </form>
             </div>

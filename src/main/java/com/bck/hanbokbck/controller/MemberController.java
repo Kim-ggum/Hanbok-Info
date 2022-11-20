@@ -48,7 +48,7 @@ public class MemberController {
     // html 파일이 하나라서 두개로 나눌 필요 없음
 
     @PostMapping("/signup")
-    public String postMember(@ModelAttribute("member") Member member, Model model, HttpSession session) {
+    public String postMember(@ModelAttribute("member") Member member, HttpSession session) {
         if(memberService.checkEmailDuplication(member.getEmail())) {
             session.setAttribute("emailFail", "이미 가입된 이메일입니다.");
         } else if(memberService.checkNameDuplication(member.getName())) {
@@ -61,10 +61,29 @@ public class MemberController {
     }
 
     @GetMapping("/updateform")
-    public String getUpdateform(Principal principal, Model model) {
+    public String getUpdateform(Principal principal, Model model, HttpSession session) {
         model.addAttribute("member", memberService.getByEmail(principal.getName()));
+        if (session.getAttribute("fail") != null) {
+            model.addAttribute("failMessage", session.getAttribute("fail"));
+            session.removeAttribute("fail");
+        } else {
+            model.addAttribute("successMessage", session.getAttribute("success"));
+            session.removeAttribute("success");
+        }
 
         return "/member/member-edit";
+    }
+
+    @GetMapping("/pwcheck")
+    public String pwCheck(@ModelAttribute("member") Member member, Principal principal, HttpSession session) {
+        member.setEmail(memberService.getByEmail(principal.getName()).getEmail());
+        if(memberService.checkPw(member)) {
+            session.setAttribute("success", "성공");
+        } else {
+            session.setAttribute("fail", "잘못된 패스워드입니다.");
+        }
+
+        return "redirect:/member/updateform";
     }
 
     @PutMapping("/update")
