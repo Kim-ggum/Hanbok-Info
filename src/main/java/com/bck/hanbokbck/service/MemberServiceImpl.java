@@ -27,10 +27,27 @@ public class MemberServiceImpl implements MemberService{
         return entity;
     }
 
+    private Member entityToDto(MemberEntity entity) {
+        Member member = Member.builder()
+                .id(entity.getId())
+                .email(entity.getEmail())
+                .pw(entity.getPw())
+                .name(entity.getName())
+                .role(entity.getRole())
+                .build();
+        return member;
+    }
+
     @Override
     public void create(Member member) {
         MemberEntity entity = dtoToEntity(member);
         memberRepository.save(entity);
+    }
+
+    @Override
+    public Member getByEmail(String email) {
+        Member member = entityToDto(memberRepository.findByEmail(email));
+        return member;
     }
 
     @Override

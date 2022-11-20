@@ -12,4 +12,6 @@ public interface MemberService {
     boolean checkEmailDuplication(String email);
 
     boolean checkNameDuplication(String name);
+
+    Member getByEmail(String email);
 }

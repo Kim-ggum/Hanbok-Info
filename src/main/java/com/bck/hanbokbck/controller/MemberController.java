@@ -3,13 +3,14 @@ package com.bck.hanbokbck.controller;
 import com.bck.hanbokbck.domain.Member;
 import com.bck.hanbokbck.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
+
 
 @Controller
 @RequestMapping("/member")
@@ -60,7 +61,14 @@ public class MemberController {
     }
 
     @GetMapping("/updateform")
-    public String getUpdateform(HttpSession session, Model model) {
+    public String getUpdateform(Principal principal, Model model) {
+        model.addAttribute("member", memberService.getByEmail(principal.getName()));
+
         return "/member/member-edit";
+    }
+
+    @PutMapping("/update")
+    public String updateMember(@ModelAttribute("member") Member member) {
+
     }
 }
