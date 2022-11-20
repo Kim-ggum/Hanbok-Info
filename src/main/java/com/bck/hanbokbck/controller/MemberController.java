@@ -104,4 +104,30 @@ public class MemberController {
         }
 
     }
+
+    @GetMapping("/deleteform")
+    public String deleteForm(Model model, HttpSession session) {
+        model.addAttribute("member", Member.builder().build());
+        if (session.getAttribute("fail") != null) {
+            model.addAttribute("failMessage", session.getAttribute("fail"));
+            session.removeAttribute("fail");
+        }
+
+        return "/member/member-delete";
+
+    }
+
+    @DeleteMapping("/delete")
+    public String memberDelete(@ModelAttribute("member") Member member, Principal principal, HttpSession session) {
+        member.setEmail(memberService.getByEmail(principal.getName()).getEmail());
+        if(memberService.checkPw(member)) {
+            member = memberService.getByEmail(member.getEmail());
+            System.out.println("성공성공");
+            memberService.delete(member);
+            return "redirect:/";
+        } else {
+            session.setAttribute("fail", "잘못된 패스워드입니다.");
+            return "redirect:/member/deleteform";
+        }
+    }
 }

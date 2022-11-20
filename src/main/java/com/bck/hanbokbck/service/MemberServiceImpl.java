@@ -80,7 +80,9 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public void delete(Member member) {
-
+        MemberEntity entity = dtoToEntity(member);
+        memberRepository.delete(entity);
+        SecurityContextHolder.clearContext();
     }
 
     @Override

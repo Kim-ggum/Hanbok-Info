@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="../../css/member/edit-style.css">
+
+    <title>회원정보 확인</title>
+</head>
+<body>
+<header>
+    <a href="/" class="header_logo"><sup>선</sup><sub>남</sub><sup>선</sup><sub>녀</sub></a>
+    <div class="header_menu">
+        <div class="icon_btn">
+            <i class="fas fa-times close-btn"></i>
+        </div>
+        <a href="#">소개</a>
+        <a href="#two">한복</a>
+        <a href="#">선남선녀</a>
+        <a href="#">문의하기</a>
+        <a sec:authorize="isAnonymous()" href="/member/signinform">로그인</a>
+        <form th:action="@{/member/signout}" method="POST" sec:authorize="isAuthenticated()" name="deleteform">
+            <a sec:authorize="isAuthenticated()" href="javascript:deleteform.submit()">로그아웃</a>
+        </form>
+        <a href="/member/updateform" sec:authorize="isAuthenticated()" sec:authentication="principal.name"></a>
+    </div>
+    <div class="icon_btn">
+        <i class="fas fa-bars menu-btn"></i>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <div class="forms">
+            <div class="form login">
+                <span class="title">패스워드 확인</span>
+                <form action="#" th:action="@{/member/delete}" th:object="${member}" th:method="delete">
+                    <div class="input-field">
+                        <input type="password" class="password" th:field="*{pw}" placeholder="패스워드 입력" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+                    <div th:if="${failMessage}">
+                        <p th:text="${failMessage}" style="color : red; margin-top: 20px;"></p>
+                    </div>
+                    <!-- 로그인 버튼 클릭시 회원정보 일치하면 회원정보수정 페이지로 이동 -->
+                    <div class="input-field button">
+                        <input type="submit" value="탈퇴" class="signup-link pw-check">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="../../js/member/edit-script.js"></script>
+
+</body>
+</html>
+
