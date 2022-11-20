@@ -75,6 +75,7 @@ public class MemberController {
             member.setPw(memberService.getByEmail(principal.getName()).getPw());
         }
 
+
         memberService.update(member);
 
         return "redirect:/";

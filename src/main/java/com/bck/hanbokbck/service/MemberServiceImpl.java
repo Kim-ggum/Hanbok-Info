@@ -5,8 +5,13 @@ import com.bck.hanbokbck.domain.Role;
 import com.bck.hanbokbck.entity.MemberEntity;
 import com.bck.hanbokbck.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 @Service
 @RequiredArgsConstructor
@@ -15,6 +20,8 @@ public class MemberServiceImpl implements MemberService{
     private final MemberRepository memberRepository;
 
     private final PasswordEncoder passwordEncoder;
+
+    private final AuthenticationManager authenticationManager;
 
     private MemberEntity dtoToEntity(Member member) {
         if(member.getId() != null) {
@@ -67,6 +74,8 @@ public class MemberServiceImpl implements MemberService{
     public void update(Member member) {
         MemberEntity entity = dtoToEntity(member);
         memberRepository.save(entity);
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(member.getEmail(), member.getPw()));
+        SecurityContextHolder.getContext().setAuthentication(authentication); // 이 두 줄로 로그인 되어있는 정보 변경
     }
 
     @Override
