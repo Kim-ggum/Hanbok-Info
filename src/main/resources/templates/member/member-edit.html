@@ -51,17 +51,17 @@
             <!-- Registration Form -->
             <div class="form signup">
                 <span class="title" style="left: 30%;">회원정보수정</span>
-                <form action="#">
+                <form th:action="@{/member/update}" th:object="${member}" th:method="put">
                     <div class="input-field">
-                        <input type="text" placeholder="닉네임 변경" th:value="${member.name}" required>
+                        <input type="text" placeholder="닉네임 변경" th:value="${#authentication.principal.name}" th:field="*{name}" required>
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="email" placeholder="이메일 변경" th:value="${member.email}" readonly required>
+                        <input type="email" placeholder="이메일 변경" th:value="${#authentication.principal.email}" th:field="*{email}"  readonly required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password pw1"  placeholder="비밀번호 변경" required>
+                        <input type="password" class="password pw1"  placeholder="비밀번호 변경" th:field="*{pw}" required>
                         <i class="uil uil-lock icon"></i>
                     </div>
                     <div class="input-field">
@@ -70,7 +70,7 @@
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
                     <div class="input-field button">
-                        <input type="button" class="update-btn" value="수정하기">
+                        <input type="submit" class="update-btn" value="수정하기">
                     </div>
                     <div class="input-field button">
                         <input type="button" value="탈퇴하기">

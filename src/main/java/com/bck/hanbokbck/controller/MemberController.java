@@ -68,7 +68,15 @@ public class MemberController {
     }
 
     @PutMapping("/update")
-    public String updateMember(@ModelAttribute("member") Member member) {
+    public String updateMember(@ModelAttribute("member") Member member, Principal principal) {
+        member.setId(memberService.getByEmail(principal.getName()).getId());
+        member.setRole(memberService.getByEmail(principal.getName()).getRole());
+        if(member.getPassword() == null) {
+            member.setPw(memberService.getByEmail(principal.getName()).getPw());
+        }
 
+        memberService.update(member);
+
+        return "redirect:/";
     }
 }
