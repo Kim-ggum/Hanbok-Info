@@ -82,7 +82,7 @@ public class MemberServiceImpl implements MemberService{
     public void delete(Member member) {
         MemberEntity entity = dtoToEntity(member);
         memberRepository.delete(entity);
-        SecurityContextHolder.clearContext();
+        SecurityContextHolder.clearContext(); // 회원 탈퇴 후 로그아웃
     }
 
     @Override
