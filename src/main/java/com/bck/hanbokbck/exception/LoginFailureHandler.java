@@ -1,4 +1,4 @@
-package com.bck.hanbokbck.util;
+package com.bck.hanbokbck.exception;
 
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.BadCredentialsException;

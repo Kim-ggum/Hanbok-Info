@@ -24,6 +24,7 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test' // security test
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5' // spring security thymeleaf
     implementation 'org.springframework.boot:spring-boot-starter-mail' // 메일 인증 위해서 필요
+    implementation 'com.google.code.gson:gson:2.9.1' // gson
 }
 
 tasks.named('test') {

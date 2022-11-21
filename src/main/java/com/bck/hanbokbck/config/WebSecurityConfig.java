@@ -1,6 +1,6 @@
 package com.bck.hanbokbck.config;
 
-import com.bck.hanbokbck.util.LoginFailureHandler;
+import com.bck.hanbokbck.exception.LoginFailureHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
