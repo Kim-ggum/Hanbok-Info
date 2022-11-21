@@ -22,6 +22,9 @@ public class Member implements UserDetails {
     @Convert(converter = RoleConverter.class)
     private Role role;
 
+    private String emailCertifiedKey; // 이메일 인증 정보
+    private Boolean accountEnabled;
+
     // 해당 유저의 권한목록 리턴
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -77,6 +80,7 @@ public class Member implements UserDetails {
     // false : 비활성화 됨
     @Override
     public boolean isEnabled() {
-        return true;
+        return accountEnabled;
     }
+
 }

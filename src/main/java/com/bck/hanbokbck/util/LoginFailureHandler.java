@@ -2,6 +2,7 @@ package com.bck.hanbokbck.util;
 
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,6 +31,8 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
             errorMessage = "존재하지 않는 계정입니다.";
         } else if (exception instanceof AuthenticationCredentialsNotFoundException) {
             errorMessage = "인증 요청이 거부되었습니다.";
+        } else if (exception instanceof DisabledException){
+            errorMessage = "이메일 인증이 완료되지 않은 계정입니다.";
         } else {
             errorMessage = "알 수 없는 오류로 로그인 요청을 처리할 수 없습니다.";
         }

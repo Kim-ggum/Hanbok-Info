@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
 
@@ -40,11 +41,11 @@ public class MemberController {
         return "/member/signin-form";
     }
 
-    /*@GetMapping("/signupform")
-    public String getRegiform(Model model) {
-        model.addAttribute("member", Member.builder().build());
-        return "/member/signin-form";
-    }*/
+    @GetMapping("/emailcertification")
+    public String emailCertification(HttpServletRequest request) {
+        memberService.emailCertificationUpdate(request.getParameter("email"), request.getParameter("key"));
+        return "/member/email-check-form";
+    }
     // html 파일이 하나라서 두개로 나눌 필요 없음
 
     @PostMapping("/signup")
@@ -55,7 +56,7 @@ public class MemberController {
             session.setAttribute("nameFail", "중복 닉네임입니다.");
         } else {
             memberService.create(member);
-            session.setAttribute("signupSuccess", "회원가입이 완료되었습니다.");
+            session.setAttribute("signupSuccess", "이메일 확인 후 인증이 끝나면 회원 가입이 완료됩니다");
         } // redirect를 하기 위해 여기에서 session에 에러 메시지를 담아줌
         return "redirect:/member/signinform";
     }
