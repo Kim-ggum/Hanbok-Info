@@ -45,6 +45,7 @@ public class Member implements UserDetails {
     @Override
     public String getUsername() {
         return getEmail();
+
     }
 
     // 계정 만료 여부
