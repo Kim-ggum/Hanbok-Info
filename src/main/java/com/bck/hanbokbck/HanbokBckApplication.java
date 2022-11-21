@@ -2,6 +2,8 @@ package com.bck.hanbokbck;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 @SpringBootApplication
 public class HanbokBckApplication {
@@ -10,4 +12,8 @@ public class HanbokBckApplication {
         SpringApplication.run(HanbokBckApplication.class, args);
     }
 
+    @Bean
+    public HiddenHttpMethodFilter hiddenHttpMethodFilter(){
+        return new HiddenHttpMethodFilter();
+    }
 }

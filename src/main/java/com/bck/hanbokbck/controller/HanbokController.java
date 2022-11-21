@@ -13,10 +13,4 @@ public class HanbokController {
     public String main() {
         return "/index";
     }
-
-    @GetMapping("/notice")
-    public String notice() { return "/notice/notice"; }
-
-    @GetMapping("/notice/edit")
-    public String noticeEdit() { return "/notice/notice-edit"; }
 }

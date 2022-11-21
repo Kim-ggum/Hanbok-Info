@@ -23,6 +23,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.security:spring-security-test' // security test
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5' // spring security thymeleaf
+    implementation 'com.google.code.gson:gson:2.9.1' // gson
 }
 
 tasks.named('test') {

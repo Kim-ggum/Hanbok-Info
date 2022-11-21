@@ -26,33 +26,31 @@
     </style>
 </head>
 <body>
-    <h1>
-        <a href="/hanbok/notice/edit">공지사항 작성</a>
-    </h1>
-    <form th:action="@{/hanbok/notice/{noticeId}(noticeId=${notice.id})}" th:method="PUT" th:object="${notice}">
-        <table>
-            <tr>
-                <td>제목</td>
-                <td><input type="text" name="title" th:field="*{title}"></td>
-            </tr>
-            <tr>
-                <td>이름</td>
-                <td><input type="text" name="writer" th:field="*{writer}"></td>
-            </tr>
-            <tr>
-                <td>내용</td>
-                <td>
-                    <textarea name="content" id="editor" th:field="*{content}"></textarea>
-                </td>
-            </tr>
-        </table>
-        <input type="submit" value="작성" id="go">
-<!--        <input type="submit" value="삭제">-->
-    </form>
-    <a href="/hanbok/notice">돌아가기</a>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="/ckeditor/ckeditor.js"></script>
-    <script>
+<h1>
+    <a href="/hanbok/notice/edit">공지사항 작성</a>
+</h1>
+<form th:action="@{/hanbok/notice}" th:method="post">
+    <table>
+        <tr>
+            <td>제목</td>
+            <td><input type="text" name="title"></td>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td><input type="text" name="writer"></td>
+        </tr>
+        <tr>
+            <td>내용</td>
+            <td>
+                <textarea name="content" id="editor"></textarea>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="작성" id="go">
+</form>
+<a href="/hanbok/notice">돌아가기</a>
+<script src="/ckeditor/ckeditor.js"></script>
+<script>
         ClassicEditor
             .create( document.querySelector( '#editor' ), {
                 language: 'ko',
@@ -60,7 +58,13 @@
                     uploadUrl: '/hanbok/notice/upload/image',
                     withCredentials: true,
                 },
-                removePlugins: [ 'ImageCaption' ],
+                image: {
+                    toolbar: [
+                        'imageStyle:inline',
+                        'imageStyle:block',
+                        'imageStyle:side'
+                    ]
+                },
             })
             .then(editor => {
                 window.editor = editor; // 에디터 선언
@@ -69,8 +73,6 @@
                 console.log("ckeditor error catch");
                 console.error( error );
             });
-
-
     </script>
 
 </body>
