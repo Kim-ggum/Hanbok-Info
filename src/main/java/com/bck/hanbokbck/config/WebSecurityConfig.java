@@ -30,6 +30,8 @@ public class WebSecurityConfig {
 //                .cors().disable()
 //                .csrf().disable()
 //                .headers().frameOptions().disable()
+                .csrf().ignoringAntMatchers("/hanbok/notice/upload/image")
+                .and()
                 .authorizeRequests()
 //                  .antMatchers("/noticeboard/**").authenticated() // 인증 요구
 //                  .antMatchers("/admin/**").hasRole("ADMIN") // admin만 가능
