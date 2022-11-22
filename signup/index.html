@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="style.css">
+          
+    <title>로그인 & 회원가입</title>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="header_logo"><sup>선</sup><sub>남</sub><sup>선</sup><sub>녀</sub></a>
+        <div class="header_menu">
+            <div class="icon_btn">
+                <i class="fas fa-times close-btn"></i>
+            </div>
+            <a href="#">소개</a>
+            <a href="#two">한복</a>
+            <a href="#">선남선녀</a>
+            <a href="#">문의하기</a>
+            <a href="/signup/index.html">로그인</a>
+        </div>
+        <div class="icon_btn">
+                <i class="fas fa-bars menu-btn"></i>
+        </div>
+    </header>
+<main>
+    <div class="container">
+        <div class="forms">
+            <div class="form login">
+                <span class="title">로그인</span>
+
+                <form action="#">
+                    <div class="input-field">
+                        <input type="text" placeholder="ID 입력" required>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" class="password" placeholder="비밀번호 입력" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            <input type="checkbox" id="logCheck">
+                            <label for="logCheck" class="text">로그인 유지</label>
+                        </div>
+                        
+                        <a href="#" class="text">비밀번호를 잊으셨나요?</a>
+                    </div>
+
+                    <div class="input-field button">
+                        <input type="button" value="Login">
+                    </div>
+                </form>
+
+                <div class="login-signup">
+                    <span class="text">회원이 아니신가요?
+                        <a href="#" class="text signup-link">가입하기</a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <div class="form signup">
+                <span class="title">회원등록</span>
+
+                <form action="#">
+                    <div class="input-field">
+                        <input type="text" placeholder="이름을 입력하세요." required>
+                        <i class="uil uil-user"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" placeholder="이메일을 입력하세요." required>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    <button type="submit" id="accept_email">인증하기</button>
+                    <div class="input-field">
+                        <input type="text" placeholder="인증코드" required>
+                        <i class="uil uil-google"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" class="password" placeholder="비밀번호 입력" required>
+                        <i class="uil uil-lock icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" class="password" placeholder="비밀번호 재확인" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            <input type="checkbox" id="termCon">
+                            <label for="termCon" class="text">모든약관의 동의합니다.</label>
+                        </div>
+                    </div>
+
+                    <div class="input-field button">
+                        <input type="button" value="가입하기">
+                    </div>
+                </form>
+                <div class="login-signup">
+                    <span class="text">이미 회원이신가요?
+                        <a href="#" class="text login-link">로그인 하기</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+    
+	<script src="script.js"></script>
+
+</body>
+</html>
+
