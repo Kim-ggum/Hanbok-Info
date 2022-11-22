@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>소개</title>
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 모바일 전용 크롬 테마 Test용 -->
+    <!-- 플러그인 링크 -->
+    <script src="https://kit.fontawesome.com/aa02f61db7.js" crossorigin="anonymous"></script>
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- CSS -->
+    <style>
+        /* reset */
+        * {padding: 0;margin: 0;box-sizing: border-box;}
+        body{height: 100%;}
+        .section_one{background: #DCDFD9;font-family: 'Readex Pro', sans-serif;color: #1b3231;}
+        /* header */
+        header{z-index: 999;position:fixed;top: 0;left: 0;width: 100%;display: flex;justify-content: space-between;align-items: center;padding: 10px 200px;transition: 0.6s;background: #FFFAF0;}
+        header.sticky{background-color: transparent;padding: 5px 180px;}
+        header .header_logo{color:#444;font-size: 30px;font-weight: 600;text-transform: uppercase;text-decoration: none;letter-spacing: 5px;max-width: 1280px;}
+        header .header_menu{position: relative;display: flex;justify-content: center;align-items: center;}
+        #header_login{border-bottom: 3px solid gray;}
+        header .header_menu a{color: #444;font-size: 16px;font-weight: 500;text-decoration: none;margin: 0 30px;padding: 0 10px;transition:0.3s;transition-property: color, background;}
+        header .header_menu a:hover{color:#444;transition: 0.5s;background-color: pink;}
+        header .icon_btn{color:#444;font-size: 25px;cursor: pointer;display: none;}
+        
+        .section_two{padding: 100px;}
+        .sub_two{padding: 20px;}
+        .hero {display: flex;align-items: center;justify-content: center;min-height: 25vh;font-size: 1.5rem;text-transform: uppercase;}
+        .container {width: 80%;max-width: 1000px;margin: 0px auto;display: flex;flex-direction: column;position: relative;}
+        .container::after {content: "";width: 2px;height: 100%;background: #1b3231;position: absolute;top: 0;left: calc(50% - 1px);z-index: 1;}
+        .evento{display: flex;justify-content: space-between;margin-bottom: 200px;position: relative;}
+        .evento::after {content: "";display: block;width: 14px;height: 14px;border-radius: 100px;background: #DCDFD9;border: 2px solid #1b3231;position: absolute;z-index: 2;top: calc(50% - 9px);left: calc(50% - 9px);}
+        .fecha {display: flex;align-items: center;justify-content: start;width: calc(42% + 20px);font-size: 32px;font-weight: normal;}
+        .foto {width: 42%;border: 10px solid #fff;position: relative;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
+        .foto::after {content: "";display: block;border: 20px solid transparent;border-left: 20px solid #fff;position: absolute;right: -50px;top: calc(50% - 20px);}
+        .foto img {width: 100%;height: 100%;vertical-align: top;}
+        .evento:nth-child(even) {flex-direction: row-reverse;}
+        .evento:nth-child(even) .fecha {justify-content: end;}
+        .evento:nth-child(even) .foto::after {content: "";border: 20px solid transparent;border-right: 20px solid #fff;right: initial;left: -50px;}
+        
+        
+        section h2{font-size: 2rem;text-transform: uppercase;letter-spacing: 2px;font-weight: 800;margin-bottom: 20px;}
+        section p{line-height: 1.8em;}
+        .parallaxBg{position: relative;width: 100%;height: 500px;overflow: hidden;display: flex;justify-content: center;align-items: center;}
+        .parallaxBg h2{position: absolute;font-size: 2.5em;text-transform: uppercase;letter-spacing: 2px;font-weight: 800;background-color: transparent;color: #f2f2f2;padding: 0 20px;}
+        
+        /*Single Tag*/
+        img{width: 80%;height: 80%;}
+        article{height: 80vh;padding: 70px;margin-top: 50px;}
+
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header>
+        <a href="/index.html" class="header_logo">선남선녀</a>
+        <div class="header_menu">
+            <div class="icon_btn"><i class="fas fa-times close-btn"></i></div>
+            <a href="/about.html" style="border: 3px solid pink">한복</a>
+            <a href="#">소개</a>
+            <a href="/ssnn.html">선남선녀</a>
+            <a href="/team.html">문의하기</a>
+        </div>
+        <a href="/signup/index.html">로그인</a>
+        <div class="icon_btn"><i class="fas fa-bars menu-btn"></i></div>
+    </header>
+      <article>
+          <h1>선남선녀</h1>
+          <p>
+              한복(韓服)은 한민족의 전통의상을 말한다. 북한에서는 "조선옷"이라고 부르나 본질은 동일하다.
+
+"한복"에 대하여 흔히 보통 '조선 후기'의 복식만을 떠올리는 경우가 많지만, 엄밀히 말해서 한복은 특정 시기의 특정 복식이 아닌 "한민족의 전통의상" 그 자체를 가리킨다.
+
+흔히 시대별로 나뉘는 한복을 보고 그것만 떠올리는 경우가 적지 않으나 그건 어디까지나 그 시대에 유행/탄생한 양식을 말하는 것이지 그것만이 전부임을 나타내는 것이 아니다. 위의 사진을 포함, 다양한 자료들에서 보이듯 한 시대에 다양한 양식의 한복들이 동시에 존재했다.
+
+즉 시대의 흐름에 따라 형태가 변해온 다양한 전통의상들을 모두 가리키며, 이러한 의상들은 시대의 유행과 타국과의 문화교류에 따른 상호작용으로 타국에 미치거나 타국의 요소를 받아들이며 지속적으로 변천해왔다.[1] 그러나 현재 대한민국에서 인식되는 한복에 대한 주된 고정관념은 어디까지나 조선 후기의 것에 지나치게 국한되어 있으며 그 정보의 질과 양도 다른 시대에 비해 월등하다. 그렇기에 이 문서에서 설명하는 대부분의 정보들 또한 조선 후기식 의복에 집중되어있으며, 그 이전의 옷들은 "고대한복" 또는 "삼국시대옷", "조선 전기 한복" 같은 식으로 구분되어 따로 정리되어지는 경우가 많다.[2] 그 시대의 한복에 대한 자세한 정보는 전통 한복의 역사 참고
+
+현대 대한민국에서 한복은 생활복의 성격을 잃고 행사용의 성격으로써 그 명맥을 유지하고 있다. 한복은 시대에 따라 다양한 양식들이 있지만 주로 조선 말기 이후의 변형된 양식만을 고수하고 있으며[3] 실생활용으로 개발된 개량한복은 여러 문제점들을 보이면서 사장된 실정이다. 그나마 전통에 대한 관심과 고증이 상승하여 조금씩 개선되고 있다지만 아직까진 갈 길이 멀다.[4]그렇다 보니 한복은 외국인 관광객들이 경복궁 같은 궁에 가서 체험해서 입는 경우가 많아지고 있다.
+
+그래도 한복 문화는 급격한 서구화로 인해 비록 주류에서 밀려났지만 지속적으로 유지 및 변화하고 있으며, 전통이란 정체성을 떠나 다양한 소재와 디자인들을 통해 그 영역을 넓혀가려는 시도가 계속되고 있다.
+
+2022년에는 '한복 문화'라는 명칭으로 국가무형문화재로 지정되었다. 보유자나 보유단체를 인정하지 않는 공동체 종목이다.
+          </p>
+          <div style="margin: 10px;">
+          <h3>한복입는순서</h3>
+          <p>
+              양반 남자
+기본: 속적삼ㆍ속고의 → 속바지 → 저고리ㆍ바지 → 버선ㆍ 대님 → 행전 → 중치막 → 대창의 → 도포 (→ 쾌자/전복/답호 등) → 세조대(많이들 세조대가 허리띠인 줄 아는데, 절대 아니다. 즉, 허리에 매는 것이 아니다. 옷고름 위에 매는 것이 정석이다.)
+관복 착용시: 중치막이나 대창의 위에 관복을 착용했다. 중치막은 조복이나 겉옷의 아래에 받쳐입었고, 대창의는 관복 아래에 받쳐 입었다. 소창의는 중치막이나 대창의를 겉옷으로 입을 때에 그 아래에 입었다.
+출토 유물을 보면 사폭바지를 입기 전에는 남자도 개당고, 합당고, 세가닥바지 등의 형태인 하의 속옷을 여러 겹 겹쳐 입었다.
+양반 여자
+기본: 다리속곳ㆍ가슴가리개 → 속속곳ㆍ속적삼 → 속바지ㆍ속저고리 → 단속곳 → 너른바지 → 무지기치마 → 치마 → 저고리
+궁중: 다리속곳ㆍ가슴가리개 → 속속곳ㆍ속적삼 → 속바지ㆍ속저고리 → 단속곳 → 너른바지 → 무지기치마 → 대슘치마→ 겉치마 → 저고리 → 당의/단삼/장삼
+여자는 바짓부리를 정돈하여 고정시키지 않기 때문에 버선을 언제 신어야 한다고 딱히 정해져 있지 않다.
+
+가난한 평민들이 저걸 다 챙겨입기에는 무리가 컸던데다 복식금제로 인한 제약 역시 존재했다. 그렇기 때문에 계층이나 직업에 따른 변화가 있었다. 입는 옷에 따른 변화도 당연히 있었다.
+평민 남자: 속적삼ㆍ속고의→속바지→저고리ㆍ바지→버선ㆍ대님→행전 정도,
+평민 여자: 속속곳ㆍ가슴가리개→속저고리→속바지→단속곳→치마→저고리 (버선)
+정도로만 입었을 것이다.
+
+원래는 치마를 오른쪽 자락이 위쪽으로 가게 입는 것이 흔했으나,[28] 개화기 쯤부터 양반은 왼쪽 자락을 위로, 기생 등의 특수계층이나 천민은 오른쪽 자락을 위로 입게 되었다고 한다.
+고름 매는 법[29]
+긴 고름 위로 짧은 고름을 교차시킨 뒤 위쪽으로 통과시킨다
+위쪽에 놓인 짧은 고름을 (자신 기준)왼쪽으로 둥글게 돌려잡아 매듭고를 만든다.[30]
+긴 고름을 매듭고 속으로 넣어 왼쪽 고대 끝까지 잡아 빼면서 짧은 고름을 아래로 당겨 고정시킨다.[31]
+고름을 아래쪽으로 늘어뜨리고 예쁘게 정돈한다.
+          </p>
+          </div>
+      </article>
+    <section class="section_one">
+    <div class="hero">
+		<h1>한복의 역사</h1>
+	</div>
+	<div class="container">
+		<div class="evento">
+			<div class="foto" data-aos="fade-up">
+				<img loading="eager" src="images/iimage1.png" alt="">
+			</div>
+			<h3 class="fecha">한복은 우리 민족 고유의 의상으로 5000여 년 한민족의 삶에서 기본 구성을 유지하면서도 당대의 생활 문화와 시대 상황, 미의식 등에 따라 형태와 구조가 다양하게 변화해왔다. 현재 우리가 입는 한복은 조선 시대 중ㆍ후기 형태를 따르고 있다. 상체는 밀착되고 하체는 풍성한 하후상박구조다.</h3>
+		</div>
+		<div class="evento">
+			<div class="foto" data-aos="fade-down">
+				<img loading="lazy" src="images/iimage2.png" alt="">
+			</div>
+			<h3 class="fecha">한복의 구조는 직선과 평면으로 재단하여 매우 단순하지만, 바느질 방법으로 보면 모든 옷의 시접 솔기를 꺾는 방법이 정확하게 정해져 있고, 깃ㆍ도련ㆍ배래 등이 곡선으로 바느질된다. 입는 방법도 정해져 있는데  옷에 여유가 있어서 활동하기가 편하고 체형도 보완해주는 기능적인 옷이다. </h3>
+		</div>
+		<div class="evento">
+			<div class="foto" data-aos="fade-left">
+				<img loading="lazy" src="images/iimage3.png" alt="">
+			</div>
+			<h3 class="fecha">한복은 옷감의 선택이나 색상, 바느질 법 등에 따라 같은 형태의 옷도 제각각 다른 옷으로 표현되기 때문에 다채로움이 있다. 한복의 옷감은 견직물과 면직물을 중심으로 직조 방법에 따라 수많은 옷감이 있다. 옷감의 상태에 따라 광택과 질감이 달라서 옷을 지었을 때 형태는 같아도 다른 옷이 된다. 자연에서 얻은 염색 재료들은 재료의 상태, 염색 방법 등에 따라 짙음과 옅음, 밝음과 어두움, 맑음과 탁함 등의 색감을 만들어낸다.</h3>
+		</div>
+		<div class="evento">
+			<div class="foto" data-aos="fade-right">
+				<img loading="lazy" src="images/iimage.JPG" alt="">
+			</div>
+			<h3 class="fecha">소박한 구성이지만 다채롭고, 평면적이지만 입체적이며, 입는 사람의 미의식과 심오한 의미까지 담긴 한복은 내외의 아름다움과 품위를 잘 살릴 수 있도록 격식을 갖춰 입는 한국의 민족의상이다.</h3>
+		</div>
+	</div>
+</section>
+<section class="section_two">
+    <section class="sub_two">
+        <h2>삼국시대</h2>
+        <p>소박한 구성이지만 다채롭고, 평면적이지만 입체적이며, 입는 사람의 미의식과 심오한 의미까지 담긴 한복은 내외의 아름다움과 품위를 잘 살릴 수 있도록 격식을 갖춰 입는 한국의 민족의상이다.</p>
+    </section>
+    <div class="parallaxBg">
+        <img loading="lazy" src="images/image10.jpg" class="thumbnail">
+        <img loading="lazy" src="images/image10.jpg" class="thumbnail">
+        <h2>B.C 1999.01.08</h2>
+    </div>
+    <section>
+        <h2>고려</h2>
+        <p>한복은 옷감의 선택이나 색상, 바느질 법 등에 따라 같은 형태의 옷도 제각각 다른 옷으로 표현되기 때문에 다채로움이 있다. 한복의 옷감은 견직물과 면직물을 중심으로 직조 방법에 따라 수많은 옷감이 있다. 옷감의 상태에 따라 광택과 질감이 달라서 옷을 지었을 때 형태는 같아도 다른 옷이 된다. 자연에서 얻은 염색 재료들은 재료의 상태, 염색 방법 등에 따라 짙음과 옅음, 밝음과 어두움, 맑음과 탁함 등의 색감을 만들어낸다.</p>
+    </section>
+    <div class="parallaxBg">
+        <img loading="lazy" src="images/image11.jpg" class="thumbnail1">
+        <img loading="lazy" src="images/image11.jpg" class="thumbnail1">
+        <h2>B.C 1999.01.08</h2>
+    </div>
+    <section>
+        <h2>조선</h2>
+        <p>한복의 구조는 직선과 평면으로 재단하여 매우 단순하지만, 바느질 방법으로 보면 모든 옷의 시접 솔기를 꺾는 방법이 정확하게 정해져 있고, 깃ㆍ도련ㆍ배래 등이 곡선으로 바느질된다. 입는 방법도 정해져 있는데  옷에 여유가 있어서 활동하기가 편하고 체형도 보완해주는 기능적인 옷이다. </p>
+    </section>
+    <div class="parallaxBg">
+        <img loading="lazy" src="images/image12.jpg" class="thumbnail" >
+        <img loading="lazy" src="images/image12.jpg" class="thumbnail">
+        <h2>B.C 1999.01.08</h2>
+    </div>
+    <section>
+        <h2>현대</h2>
+        <p>한복은 우리 민족 고유의 의상으로 5000여 년 한민족의 삶에서 기본 구성을 유지하면서도 당대의 생활 문화와 시대 상황, 미의식 등에 따라 형태와 구조가 다양하게 변화해왔다. 현재 우리가 입는 한복은 조선 시대 중ㆍ후기 형태를 따르고 있다. 상체는 밀착되고 하체는 풍성한 하후상박구조다.</p>
+    </section>
+    <div class="parallaxBg">
+        <img loading="lazy" src="images/image4.jpg" class="thumbnail">
+        <img loading="lazy" src="images/image4.jpg" class="thumbnail">
+        <h2>B.C 1999.01.08</h2>
+    </div>
+</section>
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js"></script>
+	<script src="js/script.js"></script>
+    <script>
+        var image1 = document.getElementsByClassName('thumbnail');
+            new simpleParallax(image1, {
+	           orientation: 'up right'    
+            });
+        var image2 = document.getElementsByClassName('thumbnail1');
+            new simpleParallax(image2, {
+                orientation: 'right'
+            });
+		AOS.init({
+			duration: 1500,
+			once: true
+		});
+    </script>
+</body>
+</html>

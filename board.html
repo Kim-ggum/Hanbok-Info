@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{color: #333;}.noti-wrap{float: left;width: 50%;margin-right: 3.142%;}
+        .mboard{
+            border-top: 1px solid #999;
+            border-bottom: 1px solid #999;
+        }
+        .mboard tr:nth-child(n+1) th, .mboard tr:nth-child(n+1) td{
+            border-top: 0;
+            border-bottom: 1px dotted gray;
+        }
+        .mboard th {
+        text-align: left;
+        font-weight: normal;
+        padding: 12px 5px 13px 12px;
+        font-size: 13px;
+        margin: 0;
+        border: 0;
+        vertical-align: baseline;
+        }
+        .tab1{
+            list-style: none;
+        }
+        .tab-container{
+            width: 100%;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+        }
+        .current .title , .mboard th a{
+            text-decoration: none;
+            list-style: none;
+            color: #222;
+        }
+        .mboard td{
+            text-align: right;
+        }
+        i{
+            float: right;
+            cursor: pointer;
+            font-size: 40px;
+            margin-top: -10px;
+        }
+
+        @media (max-width:768px){
+            .noti-wrap{
+                width: 100%;
+                display: block;
+                clear: both;
+            }
+            .mboard{
+                width:100%;
+            }
+}
+    </style>
+</head>
+<body>
+	<div class="noti-wrap">
+		<div class="bbs-tab">
+			<ul class="tab1">
+				<li class="current">
+				<div id="title_wrap">
+					<h5><a href="#" class="title" style="font-size: 20px;">공지사항</a></h5>
+				</div>
+					<div class="tab-container">
+						<p class="current"></p>
+						<table class="mboard">
+							<tbody><tr>
+								<th><a href="">[결과발표] 2022 한복마름방 5차 ..</a></th>
+								<td>2022.10.11</td>
+							</tr>
+
+							<tr>
+								<th><a href="">2022 한복마름방 &lt;장비사용교육 교육..</a></th>
+								<td>2022.10.11</td>
+							</tr>
+
+							<tr>
+								<th><a href="">2022 한복마름방 &lt;재개관 특강 수강..</a></th>
+								<td>2022.09.21</td>
+							</tr>
+
+							<tr>
+								<th><a href="">2022 한복마름방 &lt;5차 교육 수강생..</a></th>
+								<td>2022.09.19</td>
+							</tr>
+
+							<tr>
+								<th><a href="">2022 한복문화주간 한복 나눔 사연 ..</a></th>
+								<td>2022.08.31</td>
+							</tr>
+
+							<tr>
+								<th><a href="">2022 한복마름방 오프라인특강(2차)..</a></th>
+								<td>2022.08.31</td>
+							</tr>
+
+							<tr>
+								<th><a href="">2022 우수문화상품 신규지정 결과발표</a></th>
+								<td>2022.08.30</td>
+							</tr>
+						</tbody></table>
+					</div>
+				</li>
+            </ul>
+		</div>
+	</div>
+</body>
+</html>

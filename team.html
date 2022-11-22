@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact US</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/aa02f61db7.js" crossorigin="anonymous"></script>
+    <style>
+        *{margin: 0;padding: 0;font-family: "Open Sans",sans-serif;}
+        html{scroll-behavior: smooth;}
+        /*헤더여역*/        
+        header{z-index: 999;position:fixed;top: 0;left: 0;width: 100%;display: flex;justify-content: space-around;align-items: center;padding: 10px 20px;transition: 0.6s;background: #FFFAF0;}
+        header.sticky{background-color: transparent;padding: 5px 180px;}
+        header .header_logo{color:#444;font-size: 30px;font-weight: 600;text-transform: uppercase;text-decoration: none;letter-spacing: 5px;max-width: 1280px;}
+        header .header_menu{position: relative;display: flex;justify-content: center;align-items: center;}
+        #header_login{border-bottom: 3px solid gray;}
+        header .header_menu a{color: #444;font-size: 16px;font-weight: 500;text-decoration: none;margin: 0 30px;padding: 0 10px;transition:0.3s;transition-property: color, background;}
+        header .header_menu a:hover{color:#444;transition: 0.5s;background-color: pink;}
+        header .icon_btn{color:#444;font-size: 25px;cursor: pointer;display: none;}
+        
+        /*퍼스널 이미지 전체를 잡아주는 섹션*/
+        .team-section{height: 90vh;display: flex;}
+        .person{width: 100%;flex: 1;overflow: hidden;cursor: pointer;position: relative;transition: .2s;}
+        .person:hover{flex: 2;}.person-pic{position: absolute;height: 100%;left: 50%;transform: translateX(-50%);filter: grayscale(80%);transition: .3s;}
+        .person:hover .person-pic{filter: grayscale(0);}
+        .person-info{position: absolute;bottom: 10px;text-align: center;width: 100%;opacity: 0;transition: .2s;}
+        .person:hover .person-info{opacity: 1;bottom: 60px;transition-delay: .6s;}
+        .person-info h2{font-size: 20px;color: #fff;}
+        .person-info p{color: #b324fd;font-style: italic;margin-top: 8px;margin-bottom: 20px;}
+        
+        /*SNS ICON*/
+        .socialmedia a{display: inline-block;width: 40px;height: 40px;color: #333;background-color: #b8e994;line-height: 40px;border-radius: 50%;margin: 0 6px;font-size: 18px;transition: .3s linear;}
+        .socialmedia a:hover{color: #b8e994;background-color: transparent;transform: scale(1.5);}
+        .intro{position: relative;top: 0;left: 0;width: 100%;height: 50px;padding-top: 20px;margin:38px 0px;}
+        h1{padding: 20px;text-align: center;}
+        
+        
+        /*푸터영역*/
+        footer{position: relative;width: 100%;background: #3586ff;min-height: 100px;display: flex;justify-content: center;align-items: center;padding: 20px 50px;flex-direction: column;}footer .sns_icon{position: relative;display: flex;justify-content: center;align-items: center;margin: 10px 0;flex-wrap: wrap;}footer .sns_icon li{list-style: none;}footer .sns_icon li a{font-size: 2em;color: #fff;margin: 0 10px;display: inline-block;transition: 0.5s;}footer .sns_icon li a:hover{transform: translateY(-10px);}footer .menu_about {display: flex;position: relative;display: flex;justify-content: center;align-items: center;flex-wrap: wrap;margin-top: 20px;}footer .menu_about span{color: #fff;opacity: 0.75;}footer .menu_about a{text-decoration: none;padding: 10px;color: #fff;opacity: 0.75;}footer .menu_about a:hover{opacity: 1;}footer .about{margin-top: 20px;color: #fff;}footer p{margin-top: 20px;color: #fff;}footer .wave{position: absolute;top: -100px;left: 0;width: 100%;height: 100px;background:url(images/wave.png);background-size: 1000px 100px;}footer .wave#wave1{z-index: 1000;opacity: 1;bottom: 0;animation:animateWave 4s linear infinite;}footer .wave#wave2{z-index: 999;opacity: 0.5;bottom: 10px;animation:animateWave_02 4s linear infinite;}footer .wave#wave3{z-index: 1000;opacity: 0.2;bottom: 15px;animation: animateWave 3s linear infinite;}footer .wave#wave4{z-index: 999;opacity: 0.7;bottom: 20px;animation: animateWave_02 3s linear infinite;}@keyframes animateWave{0%{background-position-x:1000px;}100%{background-position-x:0px;}}@keyframes animateWave_02{0%{background-position-x:0px;}100%{background-position-x:1000px;}}
+        
+        .top_arrow{font-size: 1.2em;position: fixed;width: 30px;height: 30px;bottom: 50px;right: 50px;border-radius: 30px;text-decoration: none;text-align: center;color: #444;}
+    </style>
+</head>
+<body>
+   <!-- 헤더 -->
+    <header>
+        <a href="/index.html" class="header_logo">선남선녀</a>
+        <div class="header_menu">
+            <div class="icon_btn"><i class="fas fa-times close-btn"></i></div>
+            <a href="/about.html">한복</a>
+            <a href="#">소개</a>
+            <a href="/ssnn.html" >선남선녀</a>
+            <a href="/team.html" style="border-bottom:2px solid pink;">문의하기</a>
+        </div>
+        <a href="/signup/index.html">로그인</a>
+        <div class="icon_btn"><i class="fas fa-bars menu-btn"></i></div>
+    </header>
+    <!--컨텐츠 시작-->
+    <div class="intro"><h1>Team Dev & Contact Us</h1></div>
+    <section class="team-section">
+        <div class="person">
+            <img src="images/p5.jpeg" alt="" class="person-pic">
+            <div class="person-info">
+                <h2>Person Name</h2>
+                <p>Front_Developer</p>
+                <div class="socialmedia">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="person">
+            <img src="images/p6.jpeg" alt="" class="person-pic">
+            <div class="person-info">
+                <h2>Person Name</h2>
+                <p>Developer</p>
+                <div class="socialmedia">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="person">
+            <img src="images/p7.jpeg" alt="" class="person-pic">
+            <div class="person-info">
+                <h2>Person Name</h2>
+                <p>Developer & Designer</p>
+                <div class="socialmedia">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="person">
+            <img src="images/p8.webp" alt="" class="person-pic">
+            <div class="person-info">
+                <h2>Person Name</h2>
+                <p>Game Developer</p>
+                <div class="socialmedia">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="person">
+            <img src="images/p9.jpeg" alt="" class="person-pic">
+            <div class="person-info">
+                <h2>Person Name</h2>
+                <p>Designer</p>
+                <div class="socialmedia">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <img src="images/section.png" alt="" width="100%">
+    <!--컨텐츠 끝-->
+    
+    <a class="top_arrow" href="#"><i class="fa-solid fa-arrow-up"></i></a>
+    
+    <!--푸터(공통)-->
+    <footer>
+       <div class="waves">
+           <div class="wave" id="wave1"></div>
+           <div class="wave" id="wave2"></div>
+           <div class="wave" id="wave3"></div>
+           <div class="wave" id="wave4"></div>
+       </div>
+        <ul class="sns_icon">
+            <li><a href="https://www.instagram.com/b4ngs__hwa2/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+            <li><a href="https://www.facebook.com/login/" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/i/flow/login" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+            <li><a href="https://www.youtube.com/watch?v=11cta61wi0g" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+        </ul>
+        <div class="menu_about">
+            <a href="#">윤리경영</a><span>|</span>
+            <a href="#">인재채용</a><span>|</span>
+            <a href="#">김건아</a><span>|</span>
+            <a href="#">채희진</a><span>|</span>
+            <a href="#">곽혜린</a><span>|</span>
+            <a href="#">김소영</a><span>|</span>
+            <a href="#">방성환</a><span>|</span>
+            <legend><a href="#">개인정보 처리방침</a></legend>
+        </div>
+        <div class="about">
+            Follow us on
+        </div>
+        <div>
+           <p>
+            © Since 1945 Amorepacific, All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+<!--
+    <section class="contact-section">
+                <div class="container">
+                    <h2 class="sec-tit">CONTACT</h2>
+                    <div class="form-box">
+                        <form action="" method="">
+                            <fieldset class="cfixed">
+                                <legend class="blind">CONTACT US</legend>
+                                <div class="form">
+                                    <label for="name" class="blind">name</label>
+                                    <input type="text" id="name" placeholder="Name">
+                                    <label for="phone" class="blind">phone</label>
+                                    <input type="tel" id="phone" placeholder="Phone">
+                                    <label for="email" class="blind">email</label>
+                                    <input type="email" id="email" placeholder="Email Address">
+                                </div>
+                                <div class="textarea">
+                                    <label for="message" class="blind">message</label>
+                                    <textarea name="message" id="message" placeholder="Message"></textarea>
+                                </div>
+                            </fieldset>
+                            <div class="send-btn">
+                                <button>SEND MASSAGE</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+-->
+</body>
+</html>

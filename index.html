@@ -1,89 +1,206 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
-    <script src="./main.js"></script>
+    <title>선남선녀</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- 플러그인 -->
+    <script src="https://kit.fontawesome.com/aa02f61db7.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9d1eNJFXHBYzVMw84hK2H1ENmIGHxfpo&callback=initMap"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
 </head>
 <body>
-    <div class="header">헤더영역</div>
-<div class="start-screen">Scroll Down<br>
-   Main Content
-    </div>
-<div class="main-content-1">
-  <div class="sticky">
-    <div class="sticky-title">선남선녀<br />Design by. B4ng</div>
-    <div class="section section-1">
-      <div class="title">TITLE #1</div>
-      <div class="content"></div>
-    </div>
-    <div class="section section-2">
-      <div class="title">TITLE #2</div>
-      <div class="content"></div>
-    </div>
-    <div class="section section-3">
-      <div class="title">TITLE #3</div>
-      <div class="content"></div>
-    </div>
-    <div class="section section-4">
-      <div class="title">TITLE #4</div>
-      <div class="content"></div>
-    </div>
-  </div>
-</div>
-<script>
-    class FolderScroll {
-  constructor(wrapper, sticky) {
-    this.wrapper = wrapper
-    this.sticky = sticky
-    this.children = this.sticky.querySelectorAll('.section')
-    this.length = this.children.length
-    this.headerVh = 6
-    this.contentVh = 96 - this.headerVh * this.length
-    this.start = 0
-    this.end = 0
-  }
+   <!-- 헤더 -->
+    <header>
+        <a href="#" class="header_logo">선남선녀</a>
+        <div class="header_menu">
+            <div class="icon_btn"><i class="fas fa-times close-btn"></i></div>
+            <a href="/about.html">한복</a>
+            <a href="#">소개</a>
+            <a href="/ssnn.html">선남선녀</a>
+            <a href="/team.html">문의하기</a>
+        </div>
+        <a href="/signup/index.html">로그인</a>
+        <div class="icon_btn"><i class="fas fa-bars menu-btn"></i></div>
+    </header>
+    
+    <!--------------- 메인 컨텐츠 시작 -------------------->
+    <section class="content">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="images/image4.jpg" loading="lazy">
+              <div class="title">선남선녀</div>
+              <div class="description">과거에 기억에 스며들다</div>
+            </div>
+            <div class="swiper-slide">
+              <img src="images/image11.jpg" loading="lazy">
+              <div class="title">한국의 문양</div>
+              <div class="description">태극문양 기와</div>
+            </div>
+            <div class="swiper-slide">
+              <img src="images/image12.jpg" loading="lazy">
+              <div class="title">경복궁 경회루</div>
+              <div class="description">밤에 보면 그토록 아름다운..</div>
+            </div>
+          </div>
+          <!--Pagination-->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+          <!-- Progressbar -->
+          <div class="swiper-progress-bar">
+            <span class="slide_progress-bar"></span>
+          </div>
+        </div>
+    </section>
+<!--
+    <section class="section-main">
+        <span class="static">
+          <h1>안녕하세요 선남선녀의,</h1>
+          </span>
+           <ul class="dynamic-txts">
+               <li><span>김건아 입니다.</span></li>
+               <li><span>곽혜린 입니다.</span></li>
+               <li><span>채희진 입니다.</span></li>
+               <li><span>김소영 입니다.</span></li>
+               <li><span>방성환 입니다.</span></li>
+            </ul>
+    </section>
+-->
+   
+   <!-- 두번째 컨텐츠 -->
+    <div class="wrapper">
+        <div class="container swiper reveal">
+            <h1 align="center" style="font-weight: 400;">한복</h1>
+            <div class="slide-container">
 
-  init() {
-    this.start = this.wrapper.offsetTop + 100
-    this.end = this.wrapper.offsetTop + this.wrapper.offsetHeight - innerHeight - 100
-
-    this.children.forEach((child, i) => {
-      child.style.bottom = -100 + this.headerVh * (this.length - i) + 'vh'
-      child.querySelector('.title').style.height = this.headerVh + 'vh'
-      child.querySelector('.content').style.height = this.contentVh + 'vh'
-    })
-  }
-
-  animate() {
-    this.children.forEach((child, i) => {
-      const unit = (this.end - this.start) / this.length
-      const s = this.start + unit * i + 100
-      const e = this.start + unit * (i + 1)
-
-      if (scrollY <= s) {
-        child.style.transform = `translate3d(0, 0, 0)`
-      } else if (scrollY >= e) {
-        child.style.transform = `translate3d(0, ${-this.contentVh}%, 0)`
-      } else {
-        child.style.transform = `translate3d(0, ${(scrollY - s) / (unit - 100) * (-this.contentVh)}%, 0)`
-      }
-    })
-  }
-}
-
-const mainContent1 = document.querySelector('.main-content-1')
-const sticky = document.querySelector('.sticky')
-const folderScroll = new FolderScroll(mainContent1, sticky)
-folderScroll.init()
-
-window.addEventListener('resize', () => {
-  folderScroll.init()
-})
-window.addEventListener('scroll', () => {
-  folderScroll.animate()
-})
-    </script>
+                <div class="card-wrapper swiper-wrapper">
+                    <div class="card swiper-slide">
+                        <div class="image-box">
+                            <img src="/images/image1.png" loading="eager">
+                        </div>
+                        <div class="profile-details">
+                            <div class="name-job">
+                        <h3 class="name">test</h3>
+                        <h4 class="job">Lorem ipsum dolor.</h4>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card swiper-slide">
+                        <div class="image-box">
+                            <img src="/images/image2.png" loading="lazy">
+                        </div>
+                        <div class="profile-details">
+                            <div class="name-job">
+                        <h3 class="name">test</h3>
+                        <h4 class="job">Lorem ipsum dolor.</h4>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card swiper-slide">
+                        <div class="image-box">
+                            <img src="/images/image3.png" alt="" loading="lazy">
+                        </div>
+                        <div class="profile-details">
+                            <div class="name-job">
+                        <h3 class="name">test</h3>
+                        <h4 class="job">Lorem ipsum dolor.</h4>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card swiper-slide">
+                        <div class="image-box">
+                            <img src="/images/image5.png" loading="lazy">
+                        </div>
+                        <div class="profile-details">
+                            <div class="name-job">
+                        <h3 class="name">test</h3>
+                        <h4 class="job">Lorem ipsum dolor.</h4>
+                        </div>
+                        </div>
+                    </div>
+                        <div class="card swiper-slide">
+                        <div class="image-box">
+                            <img src="/images/image4.jpg" alt="">
+                        </div>
+                        <div class="profile-details">
+                            <div class="name-job">
+                        <h3 class="name">test</h3>
+                        <h4 class="job">Lorem ipsum dolor.</h4>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next swiper-navBtn"></div>
+          <div class="swiper-button-prev swiper-navBtn"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+        </div>
+        
+<!--
+    <section class="section-two" id="two">
+        <iframe src="/board.html" frameborder="1"></iframe>
+    </section>
+-->
+   
+   <!-- 세 번째 컨텐츠 -->
+    <section class="section-three reveal">
+      <h1 class="map_title">한복대여소</h1>
+       <figure>           
+        <div id="map" style="height: 500px; align-items: center; margin-top: 10%; width: 50%; margin-left: 25%;" ></div>
+        </figure>
+    </section>
+    <section class="board_list_view reveal">
+        <iframe src="/board.html" frameborder="1" width="750px" height="380px"></iframe>
+        <iframe src="/board1.html" frameborder="1" width="750px" height="380px" style="display: inline-block;" ></iframe>
+    </section>
+    
+    <!------------------------- 컨텐츠 끝 -------------------------------------->
+    
+    <!-- 푸터영역 -->
+    <footer>
+       <div class="waves">
+           <div class="wave" id="wave1"></div>
+           <div class="wave" id="wave2"></div>
+           <div class="wave" id="wave3"></div>
+           <div class="wave" id="wave4"></div>
+       </div>
+        <ul class="sns_icon">
+            <li><a href="https://www.instagram.com/b4ngs__hwa2/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+            <li><a href="https://www.facebook.com/login/" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/i/flow/login" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+            <li><a href="https://www.youtube.com/watch?v=11cta61wi0g" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+        </ul>
+        <div class="menu_about">
+            <a href="#">윤리경영</a><span>|</span>
+            <a href="#">인재채용</a><span>|</span>
+            <a href="#">김건아</a><span>|</span>
+            <a href="#">채희진</a><span>|</span>
+            <a href="#">곽혜린</a><span>|</span>
+            <a href="#">김소영</a><span>|</span>
+            <a href="#">방성환</a><span>|</span>
+            <legend><a href="#">개인정보 처리방침</a></legend>
+        </div>
+        <div class="about">
+            Follow us on
+        </div>
+        <div>
+           <p>
+            © Since 1945 Amorepacific, All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+    <!-- Scroll to Top-->
+    <a class="top_arrow" href="#"><i class="fa-solid fa-arrow-up"></i></a>
+    
+    <!-- Script Start -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
