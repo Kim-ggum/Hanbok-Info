@@ -28,6 +28,8 @@ public class LoginService implements UserDetailsService {
                 .pw(member.getPw())
                 .name(member.getName())
                 .role(member.getRole())
+                .emailCertifiedKey(member.getEmailCertifiedKey())
+                .accountEnabled(member.getAccountEnabled())
                 .build();
     }
 }

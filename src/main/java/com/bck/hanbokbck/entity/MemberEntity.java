@@ -30,4 +30,11 @@ public class MemberEntity {
     @Column(length = 30, nullable = false)
     @Convert(converter = RoleConverter.class)
     private Role role;
+
+    @Column(length = 10, nullable = false)
+    private String emailCertifiedKey;
+
+    @Column(nullable = false)
+    private Boolean accountEnabled;
+
 }
