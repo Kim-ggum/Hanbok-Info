@@ -29,4 +29,9 @@ public class HanbokController {
         return "/post/post";
     }
 
+    @GetMapping("/team")
+    public String team() {
+        return "/team/team_dev";
+    }
+
 }

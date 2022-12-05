@@ -84,10 +84,21 @@
         <div class="icon_btn"><i class="fas fa-times close-btn"></i></div>
         <a th:href="@{/hanbok/hanbok-info}">한복</a>
         <a th:href="@{/hanbok/notice}">공지사항</a>
-        <a href="/detail.html">체험마당</a>
-        <a href="/board_3.html">뽐내기</a>
-        <a href="/team_dev.html">문의하기</a>
+        <a th:href="@{/hanbok/hanbok-service}">체험마당</a>
+        <a th:href="@{/hanbok/post}">뽐내기</a>
+        <a th:href="@{/hanbok/team}">문의하기</a>
     </div>
+    <button class="lang" style="border: none; display: inline-flex; background-color: transparent; margin-right: -200px;" >
+            <span class="icon" style="padding: 3px;">
+                <i class="fa-solid fa-globe"></i>
+            </span>
+        <details style="display: inline-flex; align-items: center; padding: 3px;">
+            <summary>KO</summary>
+            <p>EN</p>
+            <p>CN</p>
+            <p>EU</p>
+        </details>
+    </button>
     <div class="header_menu">
         <a sec:authorize="isAnonymous()" style="text-decoration: none; color: #444;" href="/member/signinform">로그인</a>
         <form th:action="@{/member/signout}" method="POST" sec:authorize="isAuthenticated()" name="deleteform">
