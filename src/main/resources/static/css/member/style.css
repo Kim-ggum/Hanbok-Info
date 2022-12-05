@@ -1,211 +1,78 @@
 /* ===== Google Font Import - Poformsins ===== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{margin: 0;padding: 0;box-sizing: border-box;font-family: 'Poppins', sans-serif;}
+:root {--button-color: #ffffff;--button-bg-color: #0d6efd;--button-hover-bg-color: #025ce2;}
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-main{
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background:linear-gradient(to bottom right, #FFDEF2, #E6F0FF);
-}
-header{
-    z-index: 999;
-    position:fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 200px;
-    transition: 0.6s;
-    background: #3f3f3f;
-}
-header.sticky{
-    background: #3586ff;
-    padding: 5px 180px;
-}
-header .header_logo{
-    color:#fff;
-    font-size: 30px;
-    font-weight: 600;
-    text-transform: uppercase;
-    text-decoration: none;
-    letter-spacing: 5px;
-    max-width: 1280px;
-}
-header .header_menu{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/* 최상위 */
+main{display: flex;height: 100vh;align-items: center;justify-content: center;background:linear-gradient(to bottom right, #FFDEF2,#E6F0FF);}
 
-header .header_menu a{
-    color: #fff;
-    font-size: 16px;
-    font-weight: 500;
-    text-decoration: none;
-    margin: 0 30px;
-    padding: 0 10px;
-    border-radius: 20px;
-    transition:0.3s;
-    transition-property: color, background;
+/* 공통영역 헤더 */
+header{z-index: 999;position:fixed;top: 0;left: 0;width: 100%;display: flex;justify-content: space-between;align-items: center;padding: 10px 200px;transition: 0.6s;background-color: #FFFAF0;}header.sticky{background-color:  #FFFAF0;padding: 10px 180px;}header .header_logo{color:#111;font-size: 30px;font-weight: 350;text-transform: uppercase;text-decoration: none;letter-spacing: 5px;max-width: 1280px;}header .header_menu{position: relative;display: flex;justify-content: center;align-items: center;}header .header_menu a{color: #111;font-size: 16px;font-weight: 500;text-decoration: none;margin: 0 30px;padding: 0 10px;border-radius: 20px;transition:0.3s;transition-property: color, background;}header .header_menu a:hover{color:#111;background: #fff;}header .icon_btn{color:#111;font-size: 25px;cursor: pointer;display: none;}
+
+/* 헤더 반응형 미디어 쿼리 (랩탑)*/
+@media (max-width: 1178px){header .icon_btn{display: block;}header .header_menu{position: fixed;background: #FFFAF0;flex-direction: column;min-width: 400px;height: 100vh;top: 0;right: -100%;padding: 80px 50px;transition: 0.5s;transition-property: right;}header .header_menu.active{right: 0;}header .header_menu .close-btn{position: absolute;top: 0;left: 0;margin: 25px;}header .header_menu a{display: block;font-size: 20px;margin: 20px;padding: 0 15px;}}
+
+
+/* 폼 감싸는 영역 */
+.container{position: relative;max-width: 430px;width: 100%;background: #fff;border-radius: 10px;box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);overflow: hidden;margin: 0 20px;
 }
-header .header_menu a:hover{
-    color:#111;
-    background: #fff;
+.container .forms{display: flex;align-items: center;height: 440px;width: 200%;transition: height 0.2s ease;}
+.container .form{width: 50%;padding: 30px;background-color: #fff;transition: margin-left 0.18s ease;}
+.container.active .login{margin-left: -50%;opacity: 0;transition: margin-left 0.18s ease, opacity 0.15s ease;}
+.container .signup{opacity: 0;transition: opacity 0.09s ease;}
+.container.active .signup{opacity: 1;transition: opacity 0.2s ease;}
+.container.active .forms{height: 750px;}
+.container .form .title{position: relative;font-size: 27px;font-weight: 600;left: 30%;}
+
+/* 폼 영역*/
+.form .title::before{content: '';position: absolute;left: 0;bottom: 0;height: 3px;width: 100%;background-color: #4070f4;border-radius: 25px;}
+.form .input-field{position: relative;height: 50px;width: 100%;margin-top: 30px;}
+.input-field input{position: absolute;height: 100%;width: 100%;padding: 0 35px;border: none;outline: none;font-size: 16px;border-bottom: 2px solid #ccc;border-top: 2px solid transparent;transition: all 0.2s ease;}
+.input-field i{position: absolute;top: 50%;transform: translateY(-50%);color: #999;font-size: 23px;transition: all 0.2s ease;}
+.input-field input:is(:focus, :valid) ~ i{color: #4070f4;}
+.input-field input:is(:focus, :valid){border-bottom-color: #4070f4;}
+.input-field i.icon{left: 0;}
+.input-field i.showHidePw{right: 0;cursor: pointer;padding: 10px;}
+.form .checkbox-text{display: flex;align-items: center;justify-content: space-between;margin-top: 20px;}
+.checkbox-text .checkbox-content{display: flex;align-items: center;}
+.checkbox-content input{margin: 0 8px -2px 4px;accent-color: #4070f4;}
+.form .text{color: #333;font-size: 14px;}
+.form a.text{color: #4070f4;text-decoration: none;}
+.form a:hover{text-decoration: underline;}
+.form .button{margin-top: 35px;}
+.form .button input{border: none;color: #fff;font-size: 16px;font-weight: 500;letter-spacing: 1px;border-radius: 6px;background-color: #4070f4;cursor: pointer;transition: all 0.3s ease;}
+.button input:hover{background-color: #265df2;}
+.form .login-signup{margin-top: 30px;text-align: center;}
+
+
+/*추가 11.15*/
+#delete{margin-bottom: 20px;}
+#accept_email{position: absolute;top: 29.5%;left: 75%;box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);cursor: pointer;transition: 0.5s;-webkit-appearance: none;-moz-appearance: none;appearance: none;font-size: 1rem;font-weight: 400; 
 }
-header .icon_btn{
-    color:#fff;
-    font-size: 25px;
-    cursor: pointer;
-    display: none;
+button {background: var(--button-bg-color);color: var(--button-color);margin: 0;padding: 0.5rem 0.5rem;font-size: 0.5rem;font-weight: 400;text-align: center;text-decoration: none;border: none;border-radius: 4px;display: inline-block;width: auto;box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);cursor: pointer;transition: 0.5s;
 }
-.container{
-    position: relative;
-    max-width: 430px;
-    width: 100%;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin: 0 20px;
-}
-.container .forms{
-    display: flex;
-    align-items: center;
-    height: 440px;
-    width: 200%;
-    transition: height 0.2s ease;
-}
-.container .form{
-    width: 50%;
-    padding: 30px;
-    background-color: #fff;
-    transition: margin-left 0.18s ease;
-}
-.container.active .login{
-    margin-left: -50%;
-    opacity: 0;
-    transition: margin-left 0.18s ease, opacity 0.15s ease;
-}
-.container .signup{
-    opacity: 0;
-    transition: opacity 0.09s ease;
-}
-.container.active .signup{
-    opacity: 1;
-    transition: opacity 0.2s ease;
-}
-.container.active .forms{
-    height: 600px;
-}
-.container .form .title{
-    position: relative;
-    font-size: 27px;
-    font-weight: 600;
-}
-.form .title::before{
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 3px;
-    width: 30px;
-    background-color: #4070f4;
-    border-radius: 25px;
-}
-.form .input-field{
-    position: relative;
-    height: 50px;
-    width: 100%;
-    margin-top: 30px;
-}
-.input-field input{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    padding: 0 35px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    border-bottom: 2px solid #ccc;
-    border-top: 2px solid transparent;
-    transition: all 0.2s ease;
-}
-.input-field input:is(:focus, :valid){
-    border-bottom-color: #4070f4;
-}
-.input-field i{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #999;
-    font-size: 23px;
-    transition: all 0.2s ease;
-}
-.input-field input:is(:focus, :valid) ~ i{
-    color: #4070f4;
-}
-.input-field i.icon{
-    left: 0;
-}
-.input-field i.showHidePw{
-    right: 0;
-    cursor: pointer;
-    padding: 10px;
-}
-.form .checkbox-text{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-.checkbox-text .checkbox-content{
-    display: flex;
-    align-items: center;
-}
-.checkbox-content input{
-    margin: 0 8px -2px 4px;
-    accent-color: #4070f4;
-}
-.form .text{
-    color: #333;
-    font-size: 14px;
-}
-.form a.text{
-    color: #4070f4;
-    text-decoration: none;
-}
-.form a:hover{
-    text-decoration: underline;
-}
-.form .button{
-    margin-top: 35px;
-}
-.form .button input{
-    border: none;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    border-radius: 6px;
-    background-color: #4070f4;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.button input:hover{
-    background-color: #265df2;
+button:active,
+button:hover,
+button:focus {background: var(--button-hover-bg-color);outline: 0;}
+button:disabled {opacity: 0.5;}
+/*
+
+button.success {
+  --button-bg-color: #28a745;
+  --button-hover-bg-color: #218838;
 }
 
-.form .login-signup{
-    margin-top: 30px;
-    text-align: center;
+button.error {
+  --button-bg-color: #dc3545;
+  --button-hover-bg-color: #c82333;
 }
+
+button.warning {
+  --button-color: #212529;
+  --button-bg-color: #ffc107;
+  --button-hover-bg-color: #e0a800;
+}
+
+*/
+
+

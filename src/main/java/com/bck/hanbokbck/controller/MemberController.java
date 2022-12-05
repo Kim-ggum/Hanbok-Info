@@ -95,6 +95,8 @@ public class MemberController {
     public String updateMember(@ModelAttribute("member") Member member, Principal principal, HttpSession session) {
         member.setId(memberService.getByEmail(principal.getName()).getId());
         member.setRole(memberService.getByEmail(principal.getName()).getRole());
+        member.setAccountEnabled(memberService.getByEmail(principal.getName()).getAccountEnabled());
+        member.setEmailCertifiedKey(memberService.getByEmail(principal.getName()).getEmailCertifiedKey());
 
         if(memberService.checkNameDuplication(member.getName()) && !member.getName().equals(memberService.getByEmail(member.getEmail()).getName())) {
             session.setAttribute("nameFail", "중복 닉네임입니다.");

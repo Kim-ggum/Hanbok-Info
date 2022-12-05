@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{color: #333;}.noti-wrap{float: left;width: 50%;margin-right: 3.142%;}
+        .mboard{
+            border-top: 1px solid #999;
+            border-bottom: 1px solid #999;
+        }
+        .mboard tr:nth-child(n+1) th, .mboard tr:nth-child(n+1) td{
+            border-top: 0;
+            border-bottom: 1px dotted gray;
+        }
+        .mboard th {
+        text-align: left;
+        font-weight: normal;
+        padding: 12px 5px 13px 12px;
+        font-size: 13px;
+        margin: 0;
+        border: 0;
+        vertical-align: baseline;
+        }
+        .tab1{
+            list-style: none;
+        }
+        .tab-container{
+            width: 100%;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+        }
+        .current .title , .mboard th a{
+            text-decoration: none;
+            list-style: none;
+            color: #222;
+        }
+        .mboard td{
+            text-align: right;
+        }
+        i{
+            float: right;
+            cursor: pointer;
+            font-size: 40px;
+            margin-top: -10px;
+        }
+
+        @media (max-width:768px){
+            .noti-wrap{
+                width: 100%;
+                display: block;
+                clear: both;
+            }
+            .mboard{
+                width:100%;
+            }
+}
+    </style>
+</head>
+<body>
+	<div class="noti-wrap">
+		<div class="bbs-tab">
+			<ul class="tab1">
+				<li class="current">
+				<div id="title_wrap">
+					<h5><a href="#" class="title" style="font-size: 20px;">공지사항</a></h5>
+				</div>
+					<div class="tab-container">
+						<p class="current"></p>
+						<table class="mboard">
+							<tbody><tr>
+								<th><a href="">경복궁 야간개장</a></th>
+								<td>2022.10.11</td>
+							</tr>
+
+							<tr>
+								<th><a href="">창덕궁 야간개장</a></th>
+								<td>2022.10.11</td>
+							</tr>
+
+							<tr>
+								<th><a href="">[한보고] 개인정보 내역 처리방침</a></th>
+								<td>2022.09.21</td>
+							</tr>
+
+							<tr>
+								<th><a href="">별빛야행</a></th>
+								<td>2022.09.19</td>
+							</tr>
+
+							<tr>
+								<th><a href="">도자기 체험 공방 오픈 안내</a></th>
+								<td>2022.08.31</td>
+							</tr>
+
+							<tr>
+								<th><a href="">외국인을 위한 다국어 서비스 오픈</a></th>
+								<td>2022.08.31</td>
+							</tr>
+
+							<tr>
+								<th><a href="">지도 서비스 2.0 업데이트 안내</a></th>
+								<td>2022.08.30</td>
+							</tr>
+						</tbody></table>
+					</div>
+				</li>
+            </ul>
+		</div>
+	</div>
+</body>
+</html>
