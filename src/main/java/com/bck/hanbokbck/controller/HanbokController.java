@@ -13,4 +13,10 @@ public class HanbokController {
     public String main() {
         return "/index";
     }
+
+    @GetMapping("hanbok-info")
+    public String hanbokInfo() {
+        return "/contents/hanbok-info";
+    }
+
 }
