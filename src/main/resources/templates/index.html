@@ -1,73 +1,84 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>ㅅㄴㅅㄴ</title>
+    <title>한보고</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#4285f4"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Favicon -->
+    <link rel="icon" href="/images/icon.PNG" type="image/x-icon">
+    <!-- 플러그인 -->
     <script src="https://kit.fontawesome.com/aa02f61db7.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9d1eNJFXHBYzVMw84hK2H1ENmIGHxfpo&callback=initMap"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="../css/style.css" />
-    <!--link rel="stylesheet" href="css/styles.css"/-->
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="../css/swiper-bundle.min.css" />
 </head>
 <body>
+   <!-- 헤더 -->
     <header>
-        <a href="#" class="header_logo"><sup>선</sup><sub>남</sub><sup>선</sup><sub>녀</sub></a>
+        <a th:href="@{/}" class="header_logo">한보고</a>
         <div class="header_menu">
-            <div class="icon_btn">
-                <i class="fas fa-times close-btn"></i>
-            </div>
-            <a href="#">about</a>
-            <a href="#two">한복</a>
-            <a href="#">Team dev</a>
-            <a href="#">Contact us</a>
-            <a sec:authorize="isAnonymous()" href="/member/signinform">로그인</a>
+            <div class="icon_btn"><i class="fas fa-times close-btn"></i></div>
+            <a th:href="@{/hanbok/hanbok-info}">한복</a>
+            <a th:href="@{/hanbok/notice}">공지사항</a>
+            <a th:href="@{/hanbok/hanbok-service}">체험마당</a>
+            <a th:href="@{/hanbok/post}">뽐내기</a>
+            <a th:href="@{/hanbok/team}">문의하기</a>
+        </div>
+        <button class="lang" style="border: none; display: inline-flex; background-color: transparent; margin-right: -200px;" >
+            <span class="icon" style="padding: 3px;">
+                <i class="fa-solid fa-globe"></i>
+            </span>
+            <details style="display: inline-flex; align-items: center; padding: 3px;">
+                <summary>KO</summary>
+                <p>EN</p>
+                <p>CN</p>
+                <p>EU</p>
+            </details>
+        </button>
+        <div class="header_menu">
+            <a sec:authorize="isAnonymous()" style="text-decoration: none; color: #444;" href="/member/signinform">로그인</a>
             <form th:action="@{/member/signout}" method="POST" sec:authorize="isAuthenticated()" name="deleteform">
-                <a sec:authorize="isAuthenticated()" href="javascript:deleteform.submit()">로그아웃</a>
+                <a sec:authorize="isAuthenticated()" style="text-decoration: none; color: #444;" href="javascript:deleteform.submit()">로그아웃</a>
             </form>
-            <a href="/member/updateform" style="color : white" sec:authorize="isAuthenticated()" sec:authentication="principal.name"></a>
+            <a href="/member/updateform" style="text-decoration: none; color: #444;" sec:authorize="isAuthenticated()" sec:authentication="principal.name"></a>
         </div>
-        <div class="icon_btn">
-                <i class="fas fa-bars menu-btn"></i>
-        </div>
+        <div class="icon_btn"><i class="fas fa-bars menu-btn"></i></div>
     </header>
+    
+    <!--------------- 메인 컨텐츠 시작 -------------------->
     <section class="content">
-    <div class="swiper-container">
-  <!-- Additional required wrapper -->
-  <div class="swiper-wrapper">
-    <!-- Slides -->
-    <div class="swiper-slide">
-      <img src="../static/images/image20.jpg" alt="">
-      <div class="title">선남선녀</div>
-      <div class="description">과거에 기억에 스며들다</div>
-    </div>
-    <div class="swiper-slide">
-     <img src="../static/images/image11.jpg" alt="">
-      <div class="title">한국의 문양</div>
-      <div class="description">태극문양 기와</div>
-    </div>
-    <div class="swiper-slide">
-     <img src="../static/images/image12.jpg" alt="">
-      <div class="title">경복궁 경회루</div>
-      <div class="description">밤에 보면 그토록 아름다운..</div>
-    </div>
-  </div>
-  <!-- If we need pagination -->
-<!--  <div class="swiper-pagination"></div>-->
-
-  <!-- If we need navigation buttons -->
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-  <!-- Progressbar -->
-  <div class="swiper-progress-bar">
-    <span class="slide_progress-bar"></span>
-  </div>
-</div>
-</section>
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="../images/index.jpg" loading="lazy" style="filter: brightness(50%);">
+<!--
+              <div class="title">선남선녀</div>
+              <div class="description">과거에 기억에 스며들다</div>
+-->
+<!--              <div class="swiper-lazy-preloader"></div>-->
+               <a href="https://www.hwnvhanbok.co.kr/?gclid=CjwKCAiAyfybBhBKEiwAgtB7fvKpeBUrRzdXzhud4clU6QHAmQj1JpjUrheDORpI84rUoE-s6aXPXRoCx5YQAvD_BwE" target="blank">
+                   <div class="text-wrap">
+                       <h2>제휴 한복 대여점</h2>
+                       <p>보러가기</p>
+                   </div>
+               </a>
+            </div>
+          </div>
+          <!--Pagination-->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-pagination"></div>
+          <!-- Progressbar -->
+          <div class="swiper-progress-bar">
+            <span class="slide_progress-bar"></span>
+          </div>
+        </div>
+    </section>
+<!--
     <section class="section-main">
         <span class="static">
           <h1>안녕하세요 선남선녀의,</h1>
@@ -79,84 +90,58 @@
                <li><span>김소영 입니다.</span></li>
                <li><span>방성환 입니다.</span></li>
             </ul>
-       <div>
-          <ul class="main_sub">
-          <li>
-           <button type="button" data-slide-index="0">
-               개량한복
-           </button>
-          </li>
-            <li>
-           <button type="button" data-slide-index="1">
-               전통한복
-           </button>
-          </li>
-          <li>
-           <button type="button" data-slide-index="2">
-               결혼식한복
-           </button>
-          </li>
-           </ul>
-       </div>
     </section>
+-->
+   
+   <!-- 두번째 컨텐츠 -->
     <div class="wrapper">
-        <div class="container swiper">
-            <h1 align="center">한복</h1>
+        <div class="container swiper reveal">
+            <h1 align="center" style="font-weight: 400;">한복대여소</h1>
             <div class="slide-container">
 
                 <div class="card-wrapper swiper-wrapper">
                     <div class="card swiper-slide">
                         <div class="image-box">
-                            <img src="/images/image1.png" alt="">
+                            <div style="margin-top: 30%; ">
+                            <h3 class="name">한복남</h3>
+                            <h4 class="job">예약 서비스 <u>바로가기</u></h4>
+                            </div>
                         </div>
                         <div class="profile-details">
                             <div class="name-job">
-                        <h3 class="name">test</h3>
-                        <h4 class="job">Lorem ipsum dolor.</h4>
+                        
                         </div>
                         </div>
                     </div>
                     <div class="card swiper-slide">
                         <div class="image-box">
-                            <img src="/images/image2.png" alt="">
+                        <div style="margin-top: 30%; ">
+                        <h3 class="name">베틀한복</h3>
+                        <h4 class="job">예약 서비스 <u>바로가기</u></h4>
+                        </div>
+                        <!--    
+        <img src="#" loading="lazy">
+                       -->
                         </div>
                         <div class="profile-details">
                             <div class="name-job">
-                        <h3 class="name">test</h3>
-                        <h4 class="job">Lorem ipsum dolor.</h4>
+<!--
+                        <h3 class="name">베틀한복</h3>
+                        <h4 class="job">예약 서비스 <u>바로가기</u></h4>
+-->
                         </div>
                         </div>
                     </div>
                     <div class="card swiper-slide">
                         <div class="image-box">
-                            <img src="/images/image3.png" alt="">
+                            <div style="margin-top: 30%; ">
+                            <h3 class="name">한복궁소녀</h3>
+                            <h4 class="job">예약 서비스 <u>바로가기</u></h4>
+                            </div>
                         </div>
                         <div class="profile-details">
                             <div class="name-job">
-                        <h3 class="name">test</h3>
-                        <h4 class="job">Lorem ipsum dolor.</h4>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="card swiper-slide">
-                        <div class="image-box">
-                            <img src="/images/image5.png" alt="">
-                        </div>
-                        <div class="profile-details">
-                            <div class="name-job">
-                        <h3 class="name">test</h3>
-                        <h4 class="job">Lorem ipsum dolor.</h4>
-                        </div>
-                        </div>
-                    </div>
-                        <div class="card swiper-slide">
-                        <div class="image-box">
-                            <img src="/images/image4.jpg" alt="">
-                        </div>
-                        <div class="profile-details">
-                            <div class="name-job">
-                        <h3 class="name">test</h3>
-                        <h4 class="job">Lorem ipsum dolor.</h4>
+                       
                         </div>
                         </div>
                     </div>
@@ -167,11 +152,28 @@
           <div class="swiper-pagination"></div>
         </div>
         </div>
+        
+<!--
     <section class="section-two" id="two">
-        <h2>컨텐츠 추가 예정</h2>
-        <h3>Comming Soon.</h3>
-        <span>캡스톤 디자인</span>
+        <iframe src="/board.html" frameborder="1"></iframe>
     </section>
+-->
+   
+   <!-- 세 번째 컨텐츠 -->
+    <section class="section-three reveal" id="map">
+      <h1 class="map_title">대여소 한 눈에 보기</h1>
+       <figure>           
+        <div id="map" style="height: 800px; align-items: center; margin-top: 10%; width: 50%; margin-left: 25%;" ></div>
+       </figure>
+    </section>
+    <section class="board_list_view reveal">
+        <iframe src="/pages/notice" frameborder="1" width="750px" height="380px"></iframe>
+        <iframe src="/pages/post" frameborder="1" width="700" height="380" style="display: inline-block;" ></iframe>
+    </section>
+    
+    <!------------------------- 컨텐츠 끝 -------------------------------------->
+    
+    <!-- 푸터영역 -->
     <footer>
        <div class="waves">
            <div class="wave" id="wave1"></div>
@@ -201,73 +203,14 @@
         <div>
            <p>
             © Since 1945 Amorepacific, All Rights Reserved.
-            </p>
+           </p>
         </div>
     </footer>
+    <!-- Scroll to Top-->
     <a class="top_arrow" href="#"><i class="fa-solid fa-arrow-up"></i></a>
-<!--    <script src="js/swiper-bundle.min.js"></script>-->
+    
+    <!-- Script Start -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="../js/script.js"></script>
-    <script type="text/javascript">
-
-        window.addEventListener("scroll", function(){
-            var header = document.querySelector("header");
-            header.classList.toggle('sticky', window.scrollY > 0)
-        });
-        var menu = document.querySelector('.header_menu');
-        var menuBtn = document.querySelector('.menu-btn');
-        var closeBtn = document.querySelector('.close-btn');
-
-        menuBtn.addEventListener("click" , ()=> {
-            menu.classList.add('active');
-        });
-
-        closeBtn.addEventListener("click" , ()=> {
-            menu.classList.remove('active');
-        });
-
-        $(document).ready(function () {
-  var swiper = new Swiper(".swiper-container", {
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    speed: 500,
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-      type: "fraction"
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
-    },
-    on: {
-      init: function () {
-        $(".swiper-progress-bar").removeClass("animate");
-        $(".swiper-progress-bar").removeClass("active");
-        $(".swiper-progress-bar").eq(0).addClass("animate");
-        $(".swiper-progress-bar").eq(0).addClass("active");
-      },
-      slideChangeTransitionStart: function () {
-        $(".swiper-progress-bar").removeClass("animate");
-        $(".swiper-progress-bar").removeClass("active");
-        $(".swiper-progress-bar").eq(0).addClass("active");
-      },
-      slideChangeTransitionEnd: function () {
-        $(".swiper-progress-bar").eq(0).addClass("animate");
-      }
-    }
-  });
-  $(".swiper-container").hover(function () {
-    swiper.autoplay.stop();
-    $(".swiper-progress-bar").removeClass("animate");
-  }, function () {
-    swiper.autoplay.start();
-    $(".swiper-progress-bar").addClass("animate");
-  });
-});
-
-    </script>
 </body>
 </html>

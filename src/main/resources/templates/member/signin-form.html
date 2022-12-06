@@ -22,26 +22,25 @@
     </th:block>
 </head>
 <body>
-    <header>
-        <a href="/" class="header_logo"><sup>선</sup><sub>남</sub><sup>선</sup><sub>녀</sub></a>
-        <div class="header_menu">
-            <div class="icon_btn">
-                <i class="fas fa-times close-btn"></i>
-            </div>
-            <a href="#">about</a>
-            <a href="#two">한복</a>
-            <a href="#">Team dev</a>
-            <a href="#">Contact us</a>
-            <a sec:authorize="isAnonymous()" href="/member/signinform">로그인</a>
-            <form th:action="@{/member/signout}" method="POST" sec:authorize="isAuthenticated()" name="deleteform">
-                <a sec:authorize="isAuthenticated()" href="javascript:deleteform.submit()">로그아웃</a>
-            </form>
-            <p style="color : white" sec:authorize="isAuthenticated()" sec:authentication="principal.name"></p>
-        </div>
-        <div class="icon_btn">
-                <i class="fas fa-bars menu-btn"></i>
-        </div>
-    </header>
+<header>
+    <a th:href="@{/}" class="header_logo">한보고</a>
+    <div class="header_menu">
+        <div class="icon_btn"><i class="fas fa-times close-btn"></i></div>
+        <a href="/ssnn.html">한복</a>
+        <a href="/board.html">공지사항</a>
+        <a href="/detail.html">체험마당</a>
+        <a href="/board_3.html">뽐내기</a>
+        <a href="/team_dev.html">문의하기</a>
+    </div>
+    <div>
+        <a sec:authorize="isAnonymous()" style="text-decoration: none; color: #444;" href="/member/signinform">로그인</a>
+        <form th:action="@{/member/signout}" method="POST" sec:authorize="isAuthenticated()" name="deleteform">
+            <a sec:authorize="isAuthenticated()" style="text-decoration: none; color: #444;" href="javascript:deleteform.submit()">로그아웃</a>
+        </form>
+        <a href="/member/updateform" style="text-decoration: none; color: #444;" sec:authorize="isAuthenticated()" sec:authentication="principal.name"></a>
+    </div>
+    <div class="icon_btn"><i class="fas fa-bars menu-btn"></i></div>
+</header>
 <main>
     <div class="container">
         <div class="forms">

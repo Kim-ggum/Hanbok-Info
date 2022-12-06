@@ -31,7 +31,8 @@ public class WebSecurityConfig {
         http
 //                .cors().disable()
                 .csrf().disable()
-//                .headers().frameOptions().disable()
+                .headers().frameOptions().disable()
+                .and()
                 .authorizeRequests()
 //                  .antMatchers("/noticeboard/**").authenticated() // 인증 요구
 //                  .antMatchers("/admin/**").hasRole("ADMIN") // admin만 가능

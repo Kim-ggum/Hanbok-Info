@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ssnn</title>
+<!--    <link rel="stylesheet" href="style.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/aa02f61db7.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{margin: 0;padding: 0;box-sizing: border-box;font-family: "Poppins", sans-serif;}
+html{scroll-behavior: smooth;}
+body{background: #111222;}
+/*헤더여역*/        
+header{z-index: 999;position:fixed;top: 0;left: 0;width: 100%;display: flex;justify-content: space-between;align-items: center;padding: 10px 200px;transition: 0.6s;background: #FFFAF0;}
+header.sticky{background-color: transparent;padding: 5px 180px;}
+header .header_logo{color:#444;font-size: 30px;font-weight: 600;text-transform: uppercase;text-decoration: none;letter-spacing: 5px;max-width: 1280px;}
+header .header_menu{position: relative;display: flex;justify-content: center;align-items: center;}
+#header_login{border-bottom: 3px solid gray;}
+header .header_menu a{color: #444;font-size: 16px;font-weight: 500;text-decoration: none;margin: 0 30px;padding: 0 10px;transition:0.3s;transition-property: color, background;}
+header .header_menu a:hover{color:#444;transition: 0.5s;background-color: pink;}
+header .icon_btn{color:#444;font-size: 25px;cursor: pointer;display: none;}        
+/*각 섹션 지정*/        
+section{position: relative;display: flex;justify-content: center;align-items: center;padding: 80px 100px;color: #fff;}
+
+/*첫 번째 섹션 스타일*/
+.container{position: relative;display: flex;justify-content: center;align-items: center;flex-direction: column;}
+.main-title{font-size: 2.5em;margin-bottom: 50px;}
+.content{position: relative;width: 1150px;display: flex;justify-content: center;align-items: center;}
+.content .image{position: relative;width: 700px;height: 600px;overflow: hidden;}
+.content .image img{z-index: 111;position: absolute;top: 0;left: 0;width: 100%;height: 100%;border-radius: 10px;object-fit: cover;}
+.content .text-box{z-index: 222;background: rgba(255, 255, 255, 0.1);backdrop-filter: blur(20px);padding: 40px;max-width: 400px;border: 1px solid rgba(255, 255, 255, 0.1);border-radius: 10px;transform: translate(-80px, 50px);
+        height: 50%; }
+.content .text-box h3{font-size: 2em;margin-bottom: 10px;}
+.media-icons{margin-top: 100px;}
+.media-icons a{color: #fff;font-size: 2em;margin: 60px;}
+
+/*두 번째 섹션 스타일*/
+.section-title{font-size: 3em;margin-bottom: 80px;}
+.info-title{font-size: 1.8em;margin-bottom: 10px;}
+.info{width: 700px;margin-left: 50px;}
+.media-info{width: 400px;margin-left: 50px}
+.media-info li{list-style: none;font-size: 1.4em;}
+.media-info li a{color: #fff;text-decoration: none;}
+.media-info li:not(:last-child){margin-bottom: 50px;}
+.media-info li:nth-child(1), .media-info li:nth-child(5){padding-left: 100px;}
+.media-info li:nth-child(2), .media-info li:nth-child(4){padding-left: 50px;}
+
+/*세 번째 섹션*/        
+.sec-03{margin-bottom: 100px;}    
+      </style>
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header>
+        <a th:href="@{/}" class="header_logo">한보고</a>
+        <div class="header_menu">
+            <div class="icon_btn"><i class="fas fa-times close-btn"></i></div>
+            <a th:href="@{/hanbok/hanbok-info}">한복</a>
+            <a th:href="@{/hanbok/notice}">공지사항</a>
+            <a th:href="@{/hanbok/hanbok-service}">체험마당</a>
+            <a th:href="@{/hanbok/post}">뽐내기</a>
+            <a th:href="@{/hanbok/team}">문의하기</a>
+        </div>
+        <button class="lang" style="border: none; display: inline-flex; background-color: transparent; margin-right: -200px;" >
+            <span class="icon" style="padding: 3px;">
+                <i class="fa-solid fa-globe"></i>
+            </span>
+            <details style="display: inline-flex; align-items: center; padding: 3px;">
+                <summary>KO</summary>
+                <p>EN</p>
+                <p>CN</p>
+                <p>EU</p>
+            </details>
+        </button>
+        <div class="header_menu">
+            <a sec:authorize="isAnonymous()" style="text-decoration: none; color: #444;" href="/member/signinform">로그인</a>
+            <form th:action="@{/member/signout}" method="POST" sec:authorize="isAuthenticated()" name="deleteform">
+                <a sec:authorize="isAuthenticated()" style="text-decoration: none; color: #444;" href="javascript:deleteform.submit()">로그아웃</a>
+            </form>
+            <a href="/member/updateform" style="text-decoration: none; color: #444;" sec:authorize="isAuthenticated()" sec:authentication="principal.name"></a>
+        </div>
+        <div class="icon_btn"><i class="fas fa-bars menu-btn"></i></div>
+    </header>
+    <!-- 첫 번째 컨텐츠 -->
+    <section class="sec-01">
+      <div class="container">
+        <h2 class="main-title">한복의 종류</h2>
+        <div class="content">
+          <div class="image">
+            <img src="../../../../../../../../../Downloads/Capstone/images/teamleader.JPG" style="width: 100%;height: 100%;" alt="">
+          </div>
+          <div class="text-box">
+            <h3>전통한복</h3>
+            <p>조선시대 한복대여 연보라 전통한복 여자한복</p>
+          </div>
+        </div>
+        <div class="media-icons">
+          <a href="#" class="icon"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="icon"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </section>
+    <!-- 두 번째 컨텐츠 -->
+    <section class="sec-02">
+      <div class="container">
+        <h3 class="section-title">한복의 종류</h3>
+        <div class="content">
+          <div class="image">
+            <img loading="lazy" src="../../../../../../../../../Downloads/Capstone/images/image3.png" style="width: 100%;height: 100%;" alt="">
+          </div>
+          <div class="info">
+            <h4 class="info-title">퓨전한복</h4>
+            <p>연두연두 실버자수 퓨전한복 여자한복</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 세 번째 컨텐츠 -->
+    <section class="sec-03">
+      <div class="container">
+        <h3 class="section-title">프로젝트</h3>
+        <div class="content">
+          <div class="media-info">
+            <li><a href="#">구조/설계</a></li>
+            <li><a href="#">협업</a></li>
+            <li><a href="#">Frontend</a></li>
+            <li><a href="#">Backend</a></li>
+            <li><a href="#">UI/UX</a></li>
+          </div>
+          <div class="image">
+            <video loading="lazy" src="../../../../../../../../../Downloads/Capstone/images/video.mp4" style="width: 100%;height: 100%;" autoplay="loop"></video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      //common reveal options to create reveal animations
+      ScrollReveal({
+        //reset: true,
+        distance: '60px',
+        duration: 2500,
+        delay: 400
+      });
+      //target elements, and specify options to create reveal animations
+      ScrollReveal().reveal('.main-title, .section-title', { delay: 500, origin: 'left' });
+      ScrollReveal().reveal('.sec-01 .image, .info', { delay: 600, origin: 'bottom' });
+      ScrollReveal().reveal('.text-box', { delay: 700, origin: 'right' });
+      ScrollReveal().reveal('.media-icons i', { delay: 500, origin: 'bottom', interval: 200 });
+      ScrollReveal().reveal('.sec-02 .image, .sec-03 .image', { delay: 500, origin: 'top' });
+      ScrollReveal().reveal('.media-info li', { delay: 500, origin: 'left', interval: 200 });
+    </script>
+  </body>
+</html>
+      
