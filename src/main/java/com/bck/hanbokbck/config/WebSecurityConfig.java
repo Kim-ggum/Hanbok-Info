@@ -30,7 +30,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
 //                .cors().disable()
-//                .csrf().disable()
+                .csrf().disable()
 //                .headers().frameOptions().disable()
                 .authorizeRequests()
 //                  .antMatchers("/noticeboard/**").authenticated() // 인증 요구
