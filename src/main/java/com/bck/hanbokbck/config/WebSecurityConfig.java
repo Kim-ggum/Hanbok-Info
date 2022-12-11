@@ -1,20 +1,27 @@
 package com.bck.hanbokbck.config;
 
 import com.bck.hanbokbck.exception.LoginFailureHandler;
+import com.bck.hanbokbck.exception.NoticeAccessDeniedHandler;
+import com.bck.hanbokbck.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.io.IOException;
 
 @Configuration
@@ -23,6 +30,21 @@ import java.io.IOException;
 public class WebSecurityConfig {
 
     private final LoginFailureHandler loginFailureHandler;
+    private final LoginService loginService; // UserDetailsService 구현체
+    private final DataSource dataSource;
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler(){
+        return new NoticeAccessDeniedHandler();
+    }
+
+    @Bean
+    public PersistentTokenRepository tokenRepository() {
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepository.setDataSource(dataSource);
+
+        return jdbcTokenRepository;
+    }
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
@@ -33,10 +55,14 @@ public class WebSecurityConfig {
                 .csrf().ignoringAntMatchers("/hanbok/notice/upload/image")
                 .and()
                 .authorizeRequests()
-//                  .antMatchers("/noticeboard/**").authenticated() // 인증 요구
-//                  .antMatchers("/admin/**").hasRole("ADMIN") // admin만 가능
+                    // admin만 가능
+                    .antMatchers("/hanbok/notice/create", "/hanbok/notice/**/edit").hasRole("ADMIN")
+                    .antMatchers(HttpMethod.POST, "/hanbok/notice", "/hanbok/notice/upload/image",
+                            "/hanbok/notice/**", "/hanbok/notice/**").hasRole("ADMIN")
+
                     .anyRequest().permitAll() // 인증없이 사용가능
                     .and()
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler()).and()
                 .formLogin()
                     .loginPage("/member/signinform")
                     .usernameParameter("email")	// 로그인 시 form에서 가져올 id name 값
@@ -56,7 +82,12 @@ public class WebSecurityConfig {
                             response.sendRedirect("/hanbok/main"); // 이동
                         }
                     })
-                    .deleteCookies("JSESSIONID", "remember-me"); // 쿠키 삭제;
+                    .deleteCookies("JSESSIONID", "remember-me"); // 쿠키 삭제
+
+        // 로그인 유지
+        http.rememberMe()
+                .userDetailsService(loginService)
+                .tokenRepository(tokenRepository()); // username, 토큰, 시리즈를 조합한 토큰 정보를 DB에 저장
 
         return http.build();
     }
