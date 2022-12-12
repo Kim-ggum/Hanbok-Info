@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- Favicon -->
-    <link rel="icon" href="/images/icon.PNG" type="image/x-icon">
+    <link rel="icon" href="../images/favicoon.PNG" type="image/x-icon">
     <!-- 플러그인 -->
     <script src="https://kit.fontawesome.com/aa02f61db7.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -15,64 +15,123 @@
     <link rel="stylesheet" href="../css/style.css" />
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="../css/swiper-bundle.min.css" />
+    <!--플러그인 css-->
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"/>
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" integrity="sha512-UJfAaOlIRtdR+0P6C3KUoTDAxVTuy3lnSXLyLKlHYJlcSU8Juge/mjeaxDNMlw9LgeIotgz5FP8eUQPhX1q10A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>-->
+    <style>
+        .text-wrap .quote-icon {
+  font-size: 50px;
+  color: #4070f4;
+    }
+        .s1_arrow{display:inline-block; position:relative; top:28px; margin-left:-10px; text-align:center; animation:arrow_down 1.5s infinite;
+        color: #fff;}
+.scroll-arrow {width:8px; height:8px; border-right: 3px solid white; border-bottom: 3px solid white;
+transform: rotate(45deg); -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -o-transform: rotate(45deg);  -ms-transform: rotate(45deg);
+animation: arrow-wave 1s infinite; animation-direction: alternate;}
+.scroll-arrow:nth-child(1) {animation-delay: 0.1s;}
+.scroll-arrow:nth-child(2) {margin-top:6px; animation-delay: 0.2s;}
+.scroll-arrow:nth-child(3) {margin-top:6px; animation-delay: 0.3s;}
+@keyframes arrow-wave {
+0% {opacity: 0;}
+50% {opacity: .5;}
+100% {opacity: 1;}
+}
+@keyframes arrow_down{
+0%{top:28px;}
+50%{top:40px;}
+100%{top:28px;}
+    </style>
 </head>
 <body>
-   <!-- 헤더 -->
-    <header>
-        <a th:href="@{/}" class="header_logo">한보고</a>
-        <div class="header_menu">
-            <div class="icon_btn"><i class="fas fa-times close-btn"></i></div>
-            <a th:href="@{/hanbok/hanbok-info}">한복</a>
-            <a th:href="@{/hanbok/notice}">공지사항</a>
-            <a th:href="@{/hanbok/hanbok-service}">체험마당</a>
-            <a th:href="@{/hanbok/post}">뽐내기</a>
-            <a th:href="@{/hanbok/team}">문의하기</a>
-        </div>
-        <button class="lang" style="border: none; display: inline-flex; background-color: transparent; margin-right: -200px;" >
+   <!-- 공통헤더 -->
+   <header>
+       <a th:href="@{/}" class="header_logo">한보고</a>
+       <div class="header_menu">
+           <div class="icon_btn"><i class="fas fa-times close-btn"></i></div>
+           <a th:href="@{/hanbok/hanbok-info}">한복</a>
+           <a th:href="@{/hanbok/notice}">공지사항</a>
+           <a th:href="@{/hanbok/hanbok-service}">체험마당</a>
+           <a th:href="@{/hanbok/post}">뽐내기</a>
+           <a th:href="@{/hanbok/team}">문의하기</a>
+       </div>
+       <button class="lang" style="border: none; display: inline-flex; background-color: transparent; margin-right: -200px;" >
             <span class="icon" style="padding: 3px;">
                 <i class="fa-solid fa-globe"></i>
             </span>
-            <details style="display: inline-flex; align-items: center; padding: 3px;">
-                <summary>KO</summary>
-                <p>EN</p>
-                <p>CN</p>
-                <p>EU</p>
-            </details>
-        </button>
-        <div class="header_menu">
-            <a sec:authorize="isAnonymous()" style="text-decoration: none; color: #444;" href="/member/signinform">로그인</a>
-            <form th:action="@{/member/signout}" method="POST" sec:authorize="isAuthenticated()" name="deleteform">
-                <a sec:authorize="isAuthenticated()" style="text-decoration: none; color: #444;" href="javascript:deleteform.submit()">로그아웃</a>
-            </form>
-            <a href="/member/updateform" style="text-decoration: none; color: #444;" sec:authorize="isAuthenticated()" sec:authentication="principal.name"></a>
-        </div>
-        <div class="icon_btn"><i class="fas fa-bars menu-btn"></i></div>
-    </header>
+           <details style="display: inline-flex; align-items: center; padding: 3px;">
+               <summary>KO</summary>
+               <p>EN</p>
+               <p>CN</p>
+               <p>EU</p>
+           </details>
+       </button>
+       <div class="header_menu">
+           <a sec:authorize="isAnonymous()" style="text-decoration: none; color: #444;" href="/member/signinform">로그인</a>
+           <form th:action="@{/member/signout}" method="POST" sec:authorize="isAuthenticated()" name="deleteform">
+               <a sec:authorize="isAuthenticated()" style="text-decoration: none; color: #444;" href="javascript:deleteform.submit()">로그아웃</a>
+           </form>
+           <a href="/member/updateform" style="text-decoration: none; color: #444;" sec:authorize="isAuthenticated()" sec:authentication="principal.name"></a>
+       </div>
+       <div class="icon_btn"><i class="fas fa-bars menu-btn"></i></div>
+   </header>
     
     <!--------------- 메인 컨텐츠 시작 -------------------->
+    <!----- 첫 번째 컨텐츠 ----->
     <section class="content">
         <div class="swiper-container">
           <div class="swiper-wrapper">
+           <!----- 첫 번째 슬라이드 ----->
             <div class="swiper-slide">
-              <img src="../images/index.jpg" loading="lazy" style="filter: brightness(50%);">
-<!--
-              <div class="title">선남선녀</div>
-              <div class="description">과거에 기억에 스며들다</div>
--->
-<!--              <div class="swiper-lazy-preloader"></div>-->
-               <a href="https://www.hwnvhanbok.co.kr/?gclid=CjwKCAiAyfybBhBKEiwAgtB7fvKpeBUrRzdXzhud4clU6QHAmQj1JpjUrheDORpI84rUoE-s6aXPXRoCx5YQAvD_BwE" target="blank">
+              <img src="../images/index.jpg" loading="eager" style="filter: brightness(50%);">
                    <div class="text-wrap">
-                       <h2>제휴 한복 대여점</h2>
-                       <p>보러가기</p>
+                      <i class="bx bxs-quote-alt-left quote-icon"></i>
+                       <h1>한보고</h1>
+                       <span class="dob">입어보고,둘러보고,요리보고</span>
+                       <div class="s1_arrow">
+                          <div class="scroll-arrow"></div>
+                          <div class="scroll-arrow"></div>
+                          <div class="scroll-arrow"></div>
+                       </div>
                    </div>
-               </a>
+            </div>
+            <!----- 두 번째 슬라이드 ----->
+            <div class="swiper-slide">
+              <img src="../images/image11.jpg" loading="lazy" style="filter: brightness(70%);">
+                 <div class="text-wrap">
+                      <i class="bx bxs-quote-alt-left quote-icon"></i>
+                       <h1>한복데이</h1>
+                       <span>대여점</span>
+                       <span class="dob">간편한 예약/대여 <a href="https://hanboknam.com/" target="blank" style="text-decoration: none; color: #fff;"><abbr title="">바로가기</abbr></a></span>
+                       <div class="s1_arrow">
+                          <div class="scroll-arrow"></div>
+                          <div class="scroll-arrow"></div>
+                          <div class="scroll-arrow"></div>
+                       </div>
+                   </div>
+            </div>
+            <!----- 세 번째 슬라이드 ----->
+            <div class="swiper-slide">
+              <img src="../images/image12.jpg" loading="lazy" style="filter: brightness(70%);">
+                   <div class="text-wrap">
+                      <i class="bx bxs-quote-alt-left quote-icon"></i>
+                       <h1 style="word-spacing: 10px; letter-spacing: 10px;">전국어디서나</h1>
+                       <span>사전답사</span>
+                       <span class="dob">서비스<a href="#map_scroll" target="blank" style="text-decoration: none; color: #fff;"><abbr title="">바로가기</abbr></a></span>
+                       <div class="s1_arrow">
+                          <div class="scroll-arrow"></div>
+                          <div class="scroll-arrow"></div>
+                          <div class="scroll-arrow"></div>
+                       </div>
+                   </div>
             </div>
           </div>
-          <!--Pagination-->
+          <!---- 페이지 버튼 ----->
           <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div>
           <div class="swiper-pagination"></div>
-          <!-- Progressbar -->
+          <!---- 상태 표시 줄  ----->
           <div class="swiper-progress-bar">
             <span class="slide_progress-bar"></span>
           </div>
@@ -93,7 +152,8 @@
     </section>
 -->
    
-   <!-- 두번째 컨텐츠 -->
+   <!----- 두번째 컨텐츠 -------->
+<!--
     <div class="wrapper">
         <div class="container swiper reveal">
             <h1 align="center" style="font-weight: 400;">한복대여소</h1>
@@ -109,7 +169,6 @@
                         </div>
                         <div class="profile-details">
                             <div class="name-job">
-                        
                         </div>
                         </div>
                     </div>
@@ -119,16 +178,20 @@
                         <h3 class="name">베틀한복</h3>
                         <h4 class="job">예약 서비스 <u>바로가기</u></h4>
                         </div>
+-->
                         <!--    
         <img src="#" loading="lazy">
                        -->
+<!--
                         </div>
                         <div class="profile-details">
                             <div class="name-job">
+-->
 <!--
                         <h3 class="name">베틀한복</h3>
                         <h4 class="job">예약 서비스 <u>바로가기</u></h4>
 -->
+<!--
                         </div>
                         </div>
                     </div>
@@ -145,6 +208,28 @@
                         </div>
                         </div>
                     </div>
+                    <div class="card swiper-slide">
+                        <div class="image-box">
+                            <img src="/images/image5.png" loading="lazy">
+                        </div>
+                        <div class="profile-details">
+                            <div class="name-job">
+                        <h3 class="name">test</h3>
+                        <h4 class="job">Lorem ipsum dolor.</h4>
+                        </div>
+                        </div>
+                    </div>
+                        <div class="card swiper-slide">
+                        <div class="image-box">
+                            <img src="/images/image4.jpg" alt="">
+                        </div>
+                        <div class="profile-details">
+                            <div class="name-job">
+                        <h3 class="name">test</h3>
+                        <h4 class="job">Lorem ipsum dolor.</h4>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="swiper-button-next swiper-navBtn"></div>
@@ -152,23 +237,105 @@
           <div class="swiper-pagination"></div>
         </div>
         </div>
-        
-<!--
-    <section class="section-two" id="two">
-        <iframe src="/board.html" frameborder="1"></iframe>
-    </section>
 -->
-   
-   <!-- 세 번째 컨텐츠 -->
-    <section class="section-three reveal" id="map">
-      <h1 class="map_title">대여소 한 눈에 보기</h1>
+<section class="two_content">
+    <h1 reveal>Our Services</h1>
+    <div class="container reveal">
+        <div class="serviceBox">
+            <div class="icon" style="--i:#4eb390">
+            <ion-icon name="calendar"></ion-icon>
+            </div>
+            <div class="content">
+                <h3>예약서비스</h3>
+                <p> - 한복대여 & 렌탈 제휴업체 사업 시작
+                </p>
+                <p> - 고객의 희망날짜 예약 스케줄러 서비스
+                </p>
+            </div>
+        </div>
+        <div class="serviceBox">
+            <div class="icon" style="--i:#56dfc7">
+                <ion-icon name="information-circle-outline"></ion-icon>
+            </div>
+            <div class="content">
+                <h3>온라인</h3>
+                <p> - 웹 & 앱 서비스로 간편한 정보 습득</p>
+                <p> - 한복에 대한 올바른 정보 제공</p>
+            </div>
+        </div>
+        <div class="serviceBox">
+            <div class="icon" style="--i:#78df38">
+                <ion-icon name="map"></ion-icon>
+            </div>
+            <div class="content" id="map_scroll">
+                <h3>체험</h3>
+                <p> - 지도 서비스를 통한 사전탐방 </p>
+                <p> - 수도권을 비롯한 다른 지역도 구경 가능</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-three reveal">
+      <h3 class="map_title">
+          한복대여소
+      </h3>
        <figure>           
-        <div id="map" style="height: 800px; align-items: center; margin-top: 10%; width: 50%; margin-left: 25%;" ></div>
-       </figure>
+        <div id="map" style="height: 500px; align-items: center; width: 50%;margin: 0 auto;" ></div>
+        </figure>
+</section>               
+                  
+   <!-- 세 번째 컨텐츠 -->
+<!--    <section class="section-three reveal" id="map">-->
+     <section class="search-section reveal">
+      <h1 class="map_title" style="font-weight: 300; font-size: 3em; top: 25px; word-spacing: 10px; letter-spacing: 5px;" >입고싶은 한복을 검색 해보세요!!</h1>
+        <div class="wrap_container">
+        <div class="search-box">
+            <i class="bx bx-search"></i>
+            <input type="text" placeholder="ex)##한복,업체명">
+        </div>
+
+        <div class="images">
+            <div class="image-box" data-name="개량한복">
+                <img src="../images/image1.png" alt="">
+                <h6>베틀한복</h6>
+            </div>
+            <div class="image-box" data-name="한복남">
+                <img src="../images/image1.png" alt="">
+                <h6>한복데이</h6>
+            </div>
+            <div class="image-box" data-name="개량한복">
+                <img src="../images/image1.png" alt="">
+                <h6>한복남
+                </h6>
+            </div>
+            <div class="image-box" data-name="한복데이">
+                <img src="../images/image1.png" alt="">
+                <h6>한복남</h6>
+            </div>
+            <div class="image-box" data-name="전통한복">
+                <img src="../images/image1.png" alt="">
+                <h6>개량한복</h6>
+            </div>
+            <div class="image-box" data-name="베틀한복">
+                <img src="../images/image1.png" alt="">
+                <h6>한복남</h6>
+            </div>
+            <div class="image-box" data-name="전통한복">
+                <img src="../images/image1.png" alt="">
+                <h6>한복남</h6>
+            </div>
+            <div class="image-box" data-name="전통한복">
+                <img src="../images/image1.png" alt="">
+                <h6>한복남</h6>
+            </div>
+        </div>
+    </div>
     </section>
+<!--       <figure>           -->
+<!--        <div id="map" style="width: 500px; height: 500px;"></div>-->
+<!--        </figure>-->
     <section class="board_list_view reveal">
-        <iframe src="/pages/notice" frameborder="1" width="750px" height="380px"></iframe>
-        <iframe src="/pages/post" frameborder="1" width="700" height="380" style="display: inline-block;" ></iframe>
+        <iframe src="/pages/notice" frameborder="1" width="1400px" height="380px"></iframe>
     </section>
     
     <!------------------------- 컨텐츠 끝 -------------------------------------->
@@ -188,22 +355,17 @@
             <li><a href="https://www.youtube.com/watch?v=11cta61wi0g" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
         </ul>
         <div class="menu_about">
-            <a href="#">윤리경영</a><span>|</span>
-            <a href="#">인재채용</a><span>|</span>
-            <a href="#">김건아</a><span>|</span>
-            <a href="#">채희진</a><span>|</span>
-            <a href="#">곽혜린</a><span>|</span>
-            <a href="#">김소영</a><span>|</span>
-            <a href="#">방성환</a><span>|</span>
-            <legend><a href="#">개인정보 처리방침</a></legend>
+            <a href="#">사이트맵</a><span>|</span>
+            <a href="#">한보고</a><span>|</span>
+            <a href="#">개인정보 처리방침</a>
         </div>
         <div class="about">
             Follow us on
         </div>
         <div>
            <p>
-            © Since 1945 Amorepacific, All Rights Reserved.
-           </p>
+            © 2022. 선남선녀. All rights reserved. 
+            </p>
         </div>
     </footer>
     <!-- Scroll to Top-->
@@ -212,5 +374,7 @@
     <!-- Script Start -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="../js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
 </html>
