@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+    <script src="https://kit.fontawesome.com/aa02f61db7.js" crossorigin="anonymous"></script>
+    <style>
+        header{z-index: 999;position:fixed;top: 0;left: 0;width: 100%;display: flex;justify-content: space-between;align-items: center;padding: 10px 200px;transition: 0.6s;background-color: #FFFAF0;}header.sticky{background-color:  #FFFAF0;padding: 10px 180px;}header .header_logo{color:#111;font-size: 30px;font-weight: 350;text-transform: uppercase;text-decoration: none;letter-spacing: 5px;max-width: 1280px;}header .header_menu{position: relative;display: flex;justify-content: center;align-items: center;}header .header_menu a{color: #111;font-size: 16px;font-weight: 500;text-decoration: none;margin: 0 30px;padding: 0 10px;border-radius: 20px;transition:0.3s;transition-property: color, background;}header .header_menu a:hover{color:#111;background: #fff;}header .icon_btn{color:#111;font-size: 25px;cursor: pointer;display: none;}
+        
+        table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+section.notice {
+  padding:0;
+}
+.page-title h3 {
+  font-size: 28px;
+  color: #333333;
+  font-weight: 400;
+  text-align: center;
+}
+
+#board-impoartant .boadrd-window {
+  padding: 15px 0;
+  background-color: #f9f7f9;
+}
+#board-impoartant .boadrd-window .board_help-wrap {
+  position: relative;
+/*   padding-right: 124px; */
+  margin: 0 auto;
+  width: 80%;
+  max-width: 564px;
+}
+#board-impoartant .boadrd-window .board_help-wrap {
+  height: 40px;
+  width: 100%;
+  font-size: 14px;
+  padding: 7px 14px;
+  border: 1px solid #ccc;
+}
+#board-impoartant .boadrd-window .board_help-wrap input:focus {
+  border-color: #333;
+  outline: 0;
+  border-width: 1px;
+}
+#board-impoartant .boadrd-window .board_help-wrap .btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 108px;
+  padding: 0;
+  font-size: 16px;
+}
+
+.board-table {
+  font-size: 13px;
+  width: 100%;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.board-table a {
+  color: #333;
+  display: inline-block;
+  line-height: 1.4;
+  word-break: break-all;
+  vertical-align: middle;
+}
+.board-table a:hover {
+  text-decoration: underline;
+}
+.board-table th {
+  text-align: center;
+}
+
+.board-table .th-num {
+  width: 100px;
+  text-align: center;
+}
+
+.board-table .th-date {
+  width: 200px;
+}
+
+.board-table th, .board-table td {
+  padding: 14px 0;
+}
+
+.board-table tbody td {
+  border-top: 1px solid #e7e7e7;
+  text-align: center;
+}
+
+.board-table tbody th {
+  padding-left: 28px;
+  padding-right: 14px;
+  border-top: 1px solid #e7e7e7;
+  text-align: left;
+}
+
+.board-table tbody th p{
+  display: none;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0 30px;
+  font-size: 15px;
+  font-weight: 400;
+  background: transparent;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.btn-dark {
+  background: #555;
+  color: #fff;
+}
+
+.btn-dark:hover, .btn-dark:focus {
+  background: #373737;
+  border-color: #373737;
+  color: #fff;
+}
+
+.btn-dark {
+  background: #555;
+  color: #fff;
+}
+
+.btn-dark:hover, .btn-dark:focus {
+  background: #373737;
+  border-color: #373737;
+  color: #fff;
+}
+
+/* reset */
+
+* {
+  list-style: none;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.container {
+  width: 1100px;
+  margin:20px auto;
+}
+.blind {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  margin: -1px;
+  width: 1px;
+  height: 1px;
+}
+
+    </style>
+<!--    <link rel="stylesheet" href="style.css">-->
+</head>
+<body>
+<!--
+    <header>
+        <a href="/index.html" class="header_logo">한보고</a>
+        <div class="header_menu">
+            <div class="icon_btn"><i class="fas fa-times close-btn"></i></div>
+            <a href="/about.html">한복</a>
+            <a href="/board.html">공지사항</a>
+            <a href="/detail.html">체험마당</a>
+            <a href="/board_3.html">뽐내기</a>
+            <a href="/team.html">문의하기</a>
+        </div>
+        <button class="lang" style="border: none; display: inline-flex; background-color: transparent; margin-right: -200px;" >
+            <span class="icon" style="padding: 3px;">
+                <i class="fa-solid fa-globe"></i>
+            </span>
+            <details style="display: inline-flex; align-items: center; padding: 3px;">
+                <summary>KO</summary>
+                <p>EN</p>
+                <p>CN</p>
+                <p>EU</p>
+            </details>
+        </button>
+        <div>
+        <a href="/signup/index.html" style="text-decoration: none; color: #444;">로그인</a>
+        </div>
+        <div class="icon_btn"><i class="fas fa-bars menu-btn"></i></div>
+    </header>
+-->
+<section class="notice">
+  <div class="page-title">
+        <div class="container">
+            <h3 style="text-align: left;">뽐내기</h3>
+        </div>
+    </div>
+
+    <!-- board Important area -->
+    <div id="board-impoartant">
+        <div class="container">
+            <div class="board-window">
+                <form action="">
+                    <div class="board_help-wrap" style="margin-bottom: 10px;">
+<!--                        <a href="/board_edit.html" class="btn btn-dark">작성</a>-->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+   
+  <!-- board list area -->
+    <div id="board-list">
+        <div class="container">
+            <table class="board-table">
+                <thead>
+                <tr>
+                    <th scope="col" class="th-num">번호</th>
+                    <th scope="col" class="th-title">제목</th>
+                    <th scope="col" class="th-date">등록일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>6</td>
+                    <th>
+                      <a href="#!">오랜만에 남자친구❤랑 경복궁 야간개장 다녀왔어요!!</a>
+                      <p>테스트</p>
+                    </th>
+                    <td>2022.11.25</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <th>
+                      <a href="#!">한복대여소의 매장정보랑 한복의 종류를 미리 볼 수 있어서 좋았어요!!</a>
+                      <p>테스트</p>
+                    </th>
+                    <td>2022.11.25</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <th>
+                      <a href="#!">새로운 한복 스타일링 소개합니다~</a>
+                      <p>테스트</p>
+                    </th>
+                    <td>2022.11.25</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <th>
+                      <a href="#!">퓨전한복 너무 잘 어울리지 않나요?!</a>
+                      <p>테스트</p>
+                    </th>
+                    <td>2022.11.25</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <th><a href="#!">작년엔 딱 맞았는데 올해는 옷이 너무 작다...</a></th>
+                    <td>2022.11.25</td>
+                </tr>
+
+                <tr>
+                    <td>1</td>
+                    <th><a href="#!">I Love It Korea , Hanbok is so comfortable❤</a></th>
+                    <td>2022.11.25</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 수정 & 삭제</title>
+    <style>
+        a{
+            text-decoration: none;
+            color: #111;
+        }
+        #container {
+            width: 1000px;
+            margin: 20px auto;
+        }
+        .ck-editor__editable[role="textbox"] {
+            /* editing area */
+            min-height: 200px;
+        }
+        .ck-content .image {
+            /* block images */
+            max-width: 80%;
+            margin: 20px auto;
+        }
+        .ck-editor__editable { height: 500px; width: 1000px }
+        /*.ck-content { font-size: 20px; }*/
+    </style>
+</head>
+<body>
+    <h1>
+        <a href="/hanbok/notice/edit">공지사항 작성</a>
+    </h1>
+    <form th:action="@{/hanbok/notice/{noticeId}(noticeId=${notice.id})}" th:method="PUT" th:object="${notice}">
+        <table>
+            <tr>
+                <td>제목</td>
+                <td><input type="text" name="title" th:field="*{title}"></td>
+            </tr>
+            <tr>
+                <td>이름</td>
+                <td><input type="text" name="writer" th:field="*{writer}"></td>
+            </tr>
+            <tr>
+                <td>내용</td>
+                <td>
+                    <textarea name="content" id="editor" th:field="*{content}"></textarea>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="작성" id="go">
+<!--        <input type="submit" value="삭제">-->
+    </form>
+    <a href="/hanbok/notice">돌아가기</a>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ), {
+                language: 'ko',
+                simpleUpload: {
+                    uploadUrl: '/hanbok/notice/upload/image',
+                    withCredentials: true,
+                },
+                removePlugins: [ 'ImageCaption' ],
+            })
+            .then(editor => {
+                window.editor = editor; // 에디터 선언
+            })
+            .catch( error => {
+                console.log("ckeditor error catch");
+                console.error( error );
+            });
+
+
+    </script>
+
+</body>
+</html>

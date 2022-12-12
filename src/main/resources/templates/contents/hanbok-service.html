@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="../../css/service/style.css">
+  <script src="https://kit.fontawesome.com/aa02f61db7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<!--
+  <div class="start-screen">
+    <h1>한보고</h1><br>
+    <p>체험마당</p>
+    <div class="more">클릭!!</div>
+  </div>
+-->
+<header>
+    <a th:href="@{/}" class="header_logo">한보고</a>
+    <div class="header_menu">
+        <div class="icon_btn"><i class="fas fa-times close-btn"></i></div>
+        <a th:href="@{/hanbok/hanbok-info}">한복</a>
+        <a th:href="@{/hanbok/notice}">공지사항</a>
+        <a th:href="@{/hanbok/hanbok-service}">체험마당</a>
+        <a th:href="@{/hanbok/post}">뽐내기</a>
+        <a th:href="@{/hanbok/team}">문의하기</a>
+    </div>
+    <button class="lang" style="border: none; display: inline-flex; background-color: transparent; margin-right: -200px;" >
+            <span class="icon" style="padding: 3px;">
+                <i class="fa-solid fa-globe"></i>
+            </span>
+        <details style="display: inline-flex; align-items: center; padding: 3px;">
+            <summary>KO</summary>
+            <p>EN</p>
+            <p>CN</p>
+            <p>EU</p>
+        </details>
+    </button>
+    <div class="header_menu">
+        <a sec:authorize="isAnonymous()" style="text-decoration: none; color: #444;" href="/member/signinform">로그인</a>
+        <form th:action="@{/member/signout}" method="POST" sec:authorize="isAuthenticated()" name="deleteform">
+            <a sec:authorize="isAuthenticated()" style="text-decoration: none; color: #444;" href="javascript:deleteform.submit()">로그아웃</a>
+        </form>
+        <a href="/member/updateform" style="text-decoration: none; color: #444;" sec:authorize="isAuthenticated()" sec:authentication="principal.name"></a>
+    </div>
+    <div class="icon_btn"><i class="fas fa-bars menu-btn"></i></div>
+</header>
+  <div class="main-content-1">
+    <div class="sticky">
+      <div class="sticky-background">
+        <h1>체험마당</h1>
+        <p>더 많은 정보보기</p>
+        <div class="s1_arrow">
+          <div class="scroll-arrow"></div>
+          <div class="scroll-arrow"></div>
+          <div class="scroll-arrow"></div>
+        </div>
+      </div>
+      <div class="card-frame" id="more">
+        <div class="card">
+          <div class="front" style="flex-direction: column;font-size: 0.125em;">
+          <a href="https://www.bettl.co.kr/" target="blank">베틀한복</a>
+
+          </div>
+        </div>
+        <div class="card">
+          <div class="front" style="flex-direction: column;font-size: 0.15em;">
+          <a href="https://hanboknam.com/" target="blank">한복남</a>
+
+          </div>
+        </div>
+        <div class="card">
+          <div class="front" style="flex-direction: column; font-size: 0.1em;">
+          <a href="/#map">한복-MAP</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="front" style="flex-direction: column; font-size: 0.1em;">
+          <a href="/update.html">한복알리기</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    class CardFlipOnScroll {
+      constructor(wrapper, sticky) {
+        this.wrapper = wrapper
+        this.sticky = sticky
+        this.cards = sticky.querySelectorAll('.card')
+        this.length = this.cards.length
+
+        this.start = 0
+        this.end = 0
+        this.step = 0
+      }
+
+      init() {
+        this.start = this.wrapper.offsetTop - 100
+        this.end = this.wrapper.offsetTop + this.wrapper.offsetHeight - innerHeight * 1.2
+        this.step = (this.end - this.start) / (this.length * 2)
+      }
+
+      animate() {
+        this.cards.forEach((card, i) => {
+          const s = this.start + this.step * i
+          const e = s + this.step * (this.length + 1)
+
+          if (scrollY <= s) {
+            card.style.transform = `
+              perspective(100vw)
+              translateX(100vw) 
+              rotateY(180deg)
+            `
+          } else if (scrollY > s && scrollY <= e - this.step) {
+            card.style.transform = `
+              perspective(100vw)
+              translateX(${100 + (scrollY - s) / (e - s) * -100}vw)
+              rotateY(180deg)
+            `
+          } else if (scrollY > e - this.step && scrollY <= e) {
+            card.style.transform = `
+              perspective(100vw)
+              translateX(${100 + (scrollY - s) / (e - s) * -100}vw)
+              rotateY(${180 + -(scrollY - (e - this.step)) / this.step * 180}deg)
+            `
+          } else if (scrollY > e) {
+            card.style.transform = `
+              perspective(100vw)
+              translateX(0vw) 
+              rotateY(0deg)
+            `
+          }
+        })
+      }
+    }
+
+    const mainContent1 = document.querySelector('.main-content-1')
+    const sticky = document.querySelector('.sticky')
+    const cardFlipOnScroll = new CardFlipOnScroll(mainContent1, sticky)
+    cardFlipOnScroll.init()
+
+    window.addEventListener('scroll', () => {
+      cardFlipOnScroll.animate()
+    })
+
+    window.addEventListener('resize', () => {
+      cardFlipOnScroll.init()
+    })
+  </script>
+</body>
+</html>

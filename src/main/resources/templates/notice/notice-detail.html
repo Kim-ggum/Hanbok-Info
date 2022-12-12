@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 수정 & 삭제</title>
+    <style>
+        a{
+            text-decoration: none;
+            color: #111;
+        }
+
+        .image.image_resized img {
+            width: 100%;
+        }
+        .image.image_resized > figcaption {
+            display: block;
+        }
+        .image {
+            position: relative;
+        }
+        .image.image_resized {
+            max-width: 100%;
+            display: block;
+            box-sizing: border-box;
+            margin: auto;
+        }
+        .image-style-side {
+            float: right;
+        }
+        .image-style-side {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+<h1>
+    <a href="/hanbok/notice/edit">공지사항 작성</a>
+</h1>
+<div th:object="${notice}">
+    <table>
+        <tr>
+            <td>제목</td>
+            <td><input type="text" name="title" th:field="*{title}"></td>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td><input type="text" name="writer" th:field="*{writer}"></td>
+        </tr>
+        <tr>
+            <td>내용</td>
+            <td>
+                <div th:utext="*{content}" id="editor"></div>
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="수정" th:onclick="|location.href='@{/hanbok/notice/{noticeId}/edit(noticeId=${notice.id})}'|">
+    <form th:action="@{/hanbok/notice/{noticeId}(noticeId=${notice.id})}" th:method="delete" name="delete_form">
+        <input type="button" value="삭제" onclick="delete_form.submit()" />
+    </form>
+
+</div>
+<a href="/hanbok/notice">돌아가기</a>
+<script src="/ckeditor/ckeditor.js"></script>
+</body>
+</html>
