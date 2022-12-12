@@ -1,5 +1,6 @@
 package com.bck.hanbokbck.controller;
 
+import com.bck.hanbokbck.domain.ErrorResponse;
 import com.bck.hanbokbck.domain.Notice;
 import com.bck.hanbokbck.domain.Pagination;
 import com.bck.hanbokbck.service.NoticeServiceImpl;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -87,8 +89,8 @@ public class NoticeController {
     @PostMapping("/upload/image")
     public @ResponseBody Map<String, Object> imageUpload(@RequestParam Map<String, Object> paramMap, @RequestParam("upload") List<MultipartFile> files) {
         String path = System.getProperty("user.dir");
-//        String uploadLocation = path + "\\src\\main\\resources\\images\\notice\\"; // 저장할 경로
         String uploadLocation = path + "\\images\\notice\\"; // 저장할 경로
+        //        String uploadLocation = path + "\\src\\main\\resources\\images\\notice\\"; // 저장할 경로
         //String uploadLocation = servletContext.getRealPath("/").replace("\\", "/") + "/static/upload/images/"; // 저장할 경로
 
         // 파일 업로드(여러개) 처리 부분
@@ -121,4 +123,10 @@ public class NoticeController {
         return paramMap;
     }
 
+    @GetMapping("/access-denied")
+    public String acessDenied(Model model) {
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.FORBIDDEN.value(), "접근 권한이 없습니다.");
+        model.addAttribute("error", errorResponse);
+        return "/error/error_page";
+    }
 }
