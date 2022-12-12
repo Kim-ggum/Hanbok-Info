@@ -29,6 +29,7 @@ application.properties
 src/main/java/com/bck/hanbokbck/service/EmailService.java
 ###email###
 /images/notice/**
+src/main/resources/static/images/**
 
 ### NetBeans ###
 /nbproject/private/
