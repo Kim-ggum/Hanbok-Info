@@ -53,8 +53,8 @@
             </td>
         </tr>
     </table>
-    <input type="button" value="수정" th:onclick="|location.href='@{/hanbok/notice/{noticeId}/edit(noticeId=${notice.id})}'|">
-    <form th:action="@{/hanbok/notice/{noticeId}(noticeId=${notice.id})}" th:method="delete" name="delete_form">
+    <input sec:authorize="hasRole('ROLE_ADMIN')" type="button" value="수정" th:onclick="|location.href='@{/hanbok/notice/{noticeId}/edit(noticeId=${notice.id})}'|">
+    <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/hanbok/notice/{noticeId}(noticeId=${notice.id})}" th:method="delete" name="delete_form">
         <input type="button" value="삭제" onclick="delete_form.submit()" />
     </form>
 
