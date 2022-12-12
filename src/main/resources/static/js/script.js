@@ -1,65 +1,3 @@
-//window.addEventListener("scroll", function(){
-//            var header = document.querySelector("header");
-//            header.classList.toggle('sticky', window.scrollY > 0)
-//        });
-//        var menu = document.querySelector('.header_menu');
-//        var menuBtn = document.querySelector('.menu-btn');
-//        var closeBtn = document.querySelector('.close-btn');
-//        
-//        menuBtn.addEventListener("click" , ()=> {
-//            menu.classList.add('active');
-//        });
-//        
-//        closeBtn.addEventListener("click" , ()=> {
-//            menu.classList.remove('active');
-//        });
-//        
-//        $(document).ready(function () {
-//  var swiper = new Swiper(".swiper-container", {
-//    autoplay: {
-//      delay: 5000,
-//      disableOnInteraction: false
-//    },
-//    speed: 500,
-//    loop: true,
-//    pagination: {
-//      el: ".swiper-pagination",
-//      type: "fraction"
-//    },
-//    navigation: {
-//      nextEl: ".swiper-button-next",
-//      prevEl: ".swiper-button-prev"
-//    },
-//    on: {
-//      init: function () {
-//        $(".swiper-progress-bar").removeClass("animate");
-//        $(".swiper-progress-bar").removeClass("active");
-//        $(".swiper-progress-bar").eq(0).addClass("animate");
-//        $(".swiper-progress-bar").eq(0).addClass("active");
-//      },
-//      slideChangeTransitionStart: function () {
-//        $(".swiper-progress-bar").removeClass("animate");
-//        $(".swiper-progress-bar").removeClass("active");
-//        $(".swiper-progress-bar").eq(0).addClass("active");
-//      },
-//      slideChangeTransitionEnd: function () {
-//        $(".swiper-progress-bar").eq(0).addClass("animate");
-//      }
-//    }
-//  });
-//  $(".swiper-container").hover(function () {
-//    swiper.autoplay.stop();
-//    $(".swiper-progress-bar").removeClass("animate");
-//  }, function () {
-//    swiper.autoplay.start();
-//    $(".swiper-progress-bar").addClass("animate");
-//  });
-//});
-
-
-
-
-
 //한복 스와이프
 var swiper = new Swiper(".slide-container", {
         slidesPerView: 4,
@@ -225,4 +163,29 @@ window.addEventListener('scroll', reveal);
         }
       }
     }
+
+// Search 종류 검색 바        
+const search = document.querySelector(".search-box input"),
+      images = document.querySelectorAll(".image-box");
+
+search.addEventListener("keyup", e =>{
+    if(e.key == "Enter"){
+        let searcValue = search.value,
+            value = searcValue.toLowerCase();
+            images.forEach(image =>{
+                if(value === image.dataset.name){ 
+                    return image.style.display = "block";
+                }
+                image.style.display = "none";
+         });
+    }
+});
+
+search.addEventListener("keyup", () =>{
+    if(search.value != "") return;
+
+    images.forEach(image =>{
+        image.style.display = "block";
+    })
+})
 
