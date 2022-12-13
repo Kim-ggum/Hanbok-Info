@@ -144,7 +144,7 @@
                 <tr th:each="notice : ${noticeList}">
                     <td th:text="${notice.id}"></td>
                     <th><a th:href="@{/hanbok/notice/{noticeId}(noticeId=${notice.id})}" th:text="${notice.title}"></a></th>
-                    <td th:text="${#temporals.format(notice.createAt, 'yyyy.mm.dd')}"></td>
+                    <td th:text="${#temporals.format(notice.createAt, 'yyyy.MM.dd')}"></td>
                 </tr>
                 </tbody>
             </table>
