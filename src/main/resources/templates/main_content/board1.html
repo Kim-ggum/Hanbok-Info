@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>공지사항</title>
+	<style>
+		/* 공통영역 헤더 */
+		header{z-index: 999;position:fixed;top: 0;left: 0;width: 100%;display: flex;justify-content: space-between;align-items: center;padding: 10px 200px;transition: 0.6s;background-color: #FFFAF0;}header.sticky{background-color:  #FFFAF0;padding: 10px 180px;}header .header_logo{color:#111;font-size: 30px;font-weight: 350;text-transform: uppercase;text-decoration: none;letter-spacing: 5px;max-width: 1280px;}header .header_menu{position: relative;display: flex;justify-content: center;align-items: center;}header .header_menu a{color: #111;font-size: 16px;font-weight: 500;text-decoration: none;margin: 0 30px;padding: 0 10px;border-radius: 20px;transition:0.3s;transition-property: color, background;}header .header_menu a:hover{color:#111;background: #fff;}header .icon_btn{color:#111;font-size: 25px;cursor: pointer;display: none;}
+
+		/* 헤더 반응형 미디어 쿼리 (랩탑)*/
+		@media (max-width: 1178px){header .icon_btn{display: block;}header .header_menu{position: fixed;background: #FFFAF0;flex-direction: column;min-width: 400px;height: 100vh;top: 0;right: -100%;padding: 80px 50px;transition: 0.5s;transition-property: right;}header .header_menu.active{right: 0;}header .header_menu .close-btn{position: absolute;top: 0;left: 0;margin: 25px;}header .header_menu a{display: block;font-size: 20px;margin: 20px;padding: 0 15px;}}
+
+		/*페이지네이션 css*/
+		.page{
+			text-align: center;  // div 사이즈 영역 안에서의 center
+		width: 50%;}
+
+		.pagination {
+			list-style: none;
+			display: inline-block;
+			padding: 0;
+			margin-top: 20px;}
+
+		.pagination li {
+			display: inline;
+			text-align: center;}
+
+		.pagination a {
+			float: left;
+			display: block;
+			font-size: 14px;
+			text-decoration: none;
+			padding: 5px 12px;
+			color: #96a0ad;
+			line-height: 1.5;}
+
+		.first{
+			margin-right: 15px;}
+
+		.last{
+			margin-left: 15px;}
+
+		.first:hover, .last:hover, .left:hover, .right:hover{
+			color: #2e9cdf;}
+
+		.pagination a.active {
+			cursor: default;
+			color: #ffffff;}
+
+		.pagination a:active {
+			outline: none;}
+
+		.modal .num {
+			margin-left: 3px;
+			padding: 0;
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			-moz-border-radius: 100%;
+			-webkit-border-radius: 100%;
+			border-radius: 100%;}
+
+		.modal .num:hover {
+			background-color: #2e9cdf;
+			color: #ffffff;}
+
+		.modal .num.active, .modal .num:active {
+			background-color: #2e9cdf;
+			cursor: pointer;}
+
+		.arrow-left {
+			width: 0;
+			height: 0;
+			border-top: 10px solid transparent;
+			border-bottom: 10px solid transparent;
+			border-right:10px solid blue; }
+	</style>
+	<link rel="stylesheet" href="../../css/notice/style.css">
+</head>
+<body>
+<section class="notice">
+	<div class="page-title">
+		<div class="container">
+			<h3>공지사항</h3>
+		</div>
+	</div>
+
+	<!-- board Important area -->
+	<div id="board-impoartant" sec:authorize="hasRole('ROLE_ADMIN')">
+		<div class="container">
+			<div class="board-window">
+				<form action="">
+					<div class="board_help-wrap">
+						<a th:href="@{/hanbok/notice/create}" class="btn btn-dark">작성</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- board list area -->
+	<div id="board-list">
+		<div class="container">
+			<table class="board-table">
+				<thead>
+				<tr>
+					<th scope="col" class="th-num">번호</th>
+					<th scope="col" class="th-title">제목</th>
+					<th scope="col" class="th-date">등록일</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:each="notice : ${noticeList}">
+					<td th:text="${notice.id}"></td>
+					<th><a th:href="@{/hanbok/notice/{noticeId}(noticeId=${notice.id})}" th:text="${notice.title}"></a></th>
+					<td th:text="${#temporals.format(notice.createAt, 'yyyy.MM.dd')}"></td>
+				</tr>
+				</tbody>
+			</table>
+
+			<div class="page">
+				<ul class="pagination modal" th:object="${page}">
+					<li th:if="*{currentPage} > 0"><a th:href="@{/hanbok/notice(page=*{currentPage-1})}" class="arrow left"><</a></li>
+					<li th:unless="*{currentPage} > 0"><a href="" class="arrow left"><</a></li>
+
+					<th:block th:each="num : ${#numbers.sequence(page.beginPage, page.endPage)}">
+						<th:block th:if="${num} <= *{totalPage}">
+							<li th:if="*{currentPage} == ${num-1}"> <a th:href="@{/hanbok/notice(page=${num - 1})}" class="active num" th:text="${num}"></a></li>
+							<li th:unless="*{currentPage} == ${num-1}"> <a th:href="@{/hanbok/notice(page=${num - 1})}" class="num" th:text="${num}"></a></li>
+						</th:block>
+					</th:block>
+
+					<li th:if="*{currentPage} < *{totalPage-1}"> <a th:href="@{/hanbok/notice(page=*{currentPage+1})}" class="arrow right">></a></li>
+					<li th:unless="*{currentPage} < *{totalPage-1}"> <a href="" class="arrow right">></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</section>
+</body>
+</html>

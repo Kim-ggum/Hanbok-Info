@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+      <script>
+          alert("준비중입니다.")
+          history.back();
+      </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap');
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body{
+	height: 100vh;
+	font-family: "Raleway", sans-serif;
+	background: #2F3238;
+}
+
+.container{
+	margin: 150px;
+}
+
+.row{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.image{
+	background: #50A7FF;
+	position: relative;
+	flex: 1;
+	max-width: 460px;
+	height: 300px;
+	margin: 20px;
+	overflow: hidden;
+}
+
+.image img{
+	opacity: 0.8;
+	position: relative;
+	vertical-align: top;
+	transition: 0.6s;
+	transition-property: opacity;
+}
+
+.image:hover img{
+	opacity: 1;
+}
+
+.image .details{
+	z-index: 1;
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: #fff;
+	width: 100%;
+	height: 100%;
+}
+
+.image .details h2{
+	text-align: center;
+	font-size: 35px;
+	text-transform: uppercase;
+	font-weight: 300;
+	margin-top: 70px;
+	transition: 0.4s;
+	transition-property: transform;
+}
+
+.image .details h2 span{
+	font-weight: 900;
+}
+
+.image:hover .details h2{
+	transform: translateY(-30px);
+}
+
+.image .details p{
+	margin: 30px 30px 0 30px;
+	font-size: 18px;
+	font-weight: 600;
+	text-align: center;
+	opacity: 0;
+	transition: 0.6s;
+	transition-property: opacity, transform;
+}
+
+.image:hover .details p{
+	opacity: 1;
+	transform: translateY(-40px);
+}
+
+.more{
+	position: absolute;
+	background: rgba(255, 255, 255, 0.8);
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px;
+	bottom: -60px;
+	transition: 0.6s;
+	transition-property: bottom;
+}
+
+.image:hover .more{
+	bottom: 0;
+}
+
+.more .read-more{
+	color: #000;
+	text-decoration: none;
+	font-size: 20px;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+.more .read-more span{
+	font-weight: 900;
+}
+
+.more .icon-links i{
+	color: #000;
+	font-size: 20px;
+        }
+
+.more .icon-links a:not(:last-child) i{
+	margin-right: 20px;
+}
+
+/* Responsive CSS */
+
+@media (max-width: 1080px){
+	.image{
+		flex: 100%;
+		max-width: 480px;
+	}
+}
+
+@media (max-width: 400px){
+	.image .details p{
+		font-size: 16px;
+	}
+
+	.more .read-more, .more .icon-links a i{
+		font-size: 18px;
+	}
+}
+      </style>
+      
+  </head>
+  <body>
+  <header>
+      <a th:href="@{/}" class="header_logo">한보고</a>
+      <div class="header_menu">
+          <div class="icon_btn"><i class="fas fa-times close-btn"></i></div>
+          <a th:href="@{/hanbok/hanbok-info}">한복</a>
+          <a th:href="@{/hanbok/notice}">공지사항</a>
+          <a th:href="@{/hanbok/hanbok-service}">체험마당</a>
+          <a th:href="@{/hanbok/post}">뽐내기</a>
+          <a th:href="@{/hanbok/team}">문의하기</a>
+      </div>
+      <button class="lang" style="border: none; display: inline-flex; background-color: transparent; margin-right: -200px;" >
+            <span class="icon" style="padding: 3px;">
+                <i class="fa-solid fa-globe"></i>
+            </span>
+          <details style="display: inline-flex; align-items: center; padding: 3px;">
+              <summary>KO</summary>
+              <p>EN</p>
+              <p>CN</p>
+              <p>EU</p>
+          </details>
+      </button>
+      <div class="header_menu">
+          <a sec:authorize="isAnonymous()" style="text-decoration: none; color: #444;" href="/member/signinform">로그인</a>
+          <form th:action="@{/member/signout}" method="POST" sec:authorize="isAuthenticated()" name="deleteform">
+              <a sec:authorize="isAuthenticated()" style="text-decoration: none; color: #444;" href="javascript:deleteform.submit()">로그아웃</a>
+          </form>
+          <a href="/member/updateform" style="text-decoration: none; color: #444;" sec:authorize="isAuthenticated()" sec:authentication="principal.name"></a>
+      </div>
+      <div class="icon_btn"><i class="fas fa-bars menu-btn"></i></div>
+  </header>
+   <div style="    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 58px;
+    color: azure;
+    position: absolute;
+    /* margin: 80px; */
+    /* text-align: center; */
+    left: 47.6%;
+    top: 10%;">
+    <h1>게시판</h1>
+    </div>
+    <!--image card layout start-->
+    <div class="container">
+      <!--image row start-->
+      <div class="row">
+        <!--image card start-->
+        <div class="image">
+          <img src="../../../../../../../../../Downloads/Capstone/images/image.JPG" alt="" width="100%" height="100%" style="object-fit: cover;">
+          <div class="details">
+<!--
+            <h2>Your <span>Title</span></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+-->
+            <div class="more">
+              <a href="#" class="read-more">Read <span>More</span></a>
+              <div class="icon-links">
+                <a href="#"><i class="fas fa-heart"></i></a>
+                <a href="#"><i class="fas fa-eye"></i></a>
+                <a href="#"><i class="fas fa-paperclip"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--image card end-->
+        <!--image card start-->
+        <div class="image">
+          <img src="../../../../../../../../../Downloads/Capstone/images/image.JPG" alt="" width="100%" height="100%" style="object-fit: cover;">
+          <div class="details">
+<!--
+            <h2>Your <span>Title</span></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+-->
+            <div class="more">
+              <a href="#" class="read-more">Read <span>More</span></a>
+              <div class="icon-links">
+                <a href="#"><i class="fas fa-heart"></i></a>
+                <a href="#"><i class="fas fa-eye"></i></a>
+                <a href="#"><i class="fas fa-paperclip"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--image card end-->
+        <!--image card start-->
+        <div class="image">
+          <img src="../../../../../../../../../Downloads/Capstone/images/image.JPG" alt="" width="100%" height="100%" style="object-fit: cover;">
+          <div class="details">
+<!--
+            <h2>Your <span>Title</span></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+-->
+            <div class="more">
+              <a href="#" class="read-more">Read <span>More</span></a>
+              <div class="icon-links">
+                <a href="#"><i class="fas fa-heart"></i></a>
+                <a href="#"><i class="fas fa-eye"></i></a>
+                <a href="#"><i class="fas fa-paperclip"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--image card end-->
+      </div>
+      <!--image row end-->
+      <!--image row start-->
+      <div class="row">
+        <!--image card start-->
+        <div class="image">
+          <img src="../../../../../../../../../Downloads/Capstone/images/image.JPG" alt="" width="100%" height="100%" style="object-fit: cover;">
+          <div class="details">
+<!--
+            <h2>Your <span>Title</span></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+-->
+            <div class="more">
+              <a href="#" class="read-more">Read <span>More</span></a>
+              <div class="icon-links">
+                <a href="#"><i class="fas fa-heart"></i></a>
+                <a href="#"><i class="fas fa-eye"></i></a>
+                <a href="#"><i class="fas fa-paperclip"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--image card end-->
+        <!--image card start-->
+        <div class="image">
+          <img src="../../../../../../../../../Downloads/Capstone/images/image.JPG" alt="" width="100%" height="100%" style="object-fit: cover;">
+          <div class="details">
+<!--
+            <h2>Your <span>Title</span></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+-->
+            <div class="more">
+              <a href="#" class="read-more">Read <span>More</span></a>
+              <div class="icon-links">
+                <a href="#"><i class="fas fa-heart"></i></a>
+                <a href="#"><i class="fas fa-eye"></i></a>
+                <a href="#"><i class="fas fa-paperclip"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--image card end-->
+        <!--image card start-->
+        <div class="image">
+          <img src="../../../../../../../../../Downloads/Capstone/images/image.JPG" alt="" width="100%" height="100%" style="object-fit: cover;">
+          <div class="details">
+<!--
+            <h2>Your <span>Title</span></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+-->
+            <div class="more">
+              <a href="#" class="read-more">Read <span>More</span></a>
+              <div class="icon-links">
+                <a href="#"><i class="fas fa-heart"></i></a>
+                <a href="#"><i class="fas fa-eye"></i></a>
+                <a href="#"><i class="fas fa-paperclip"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--image card end-->
+      </div>
+      <!--image row end-->
+    </div>
+    <!--image card layout end-->
+
+  </body>
+</html>
+      

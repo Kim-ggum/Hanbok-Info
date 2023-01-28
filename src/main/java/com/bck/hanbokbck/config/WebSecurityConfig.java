@@ -52,8 +52,9 @@ public class WebSecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
 //                .cors().disable()
-//                .csrf().disable()
-//                .headers().frameOptions().disable()
+                .csrf().disable()
+                .headers().frameOptions().disable()
+                .and()
                 .csrf().ignoringAntMatchers("/hanbok/notice/upload/image")
                 .and()
                 .authorizeRequests()
